@@ -5,6 +5,8 @@
  */
 package Utiles;
 
+import java.util.Random;
+
 /**
  *
  * @author retr0
@@ -22,8 +24,13 @@ public class random {
         i = m.intValue();
         return i;
     }
+    public String getRandomName(){
+        String nombres[] = {"Manuel","Mijail","Sheillah","Kathy","Monica","Luis"};
+        return nombres[new Random().nextInt(nombres.length)];
+    }
     public static void main(String[] args) {
         random r  = new random();
         System.out.println(r.getRandomDni());
+        System.out.println(r.getRandomName());
     }
 }

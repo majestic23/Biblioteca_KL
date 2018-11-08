@@ -22,7 +22,7 @@ public class CADO {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             return DriverManager.getConnection(cadenaConexion, parametros);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             return null;
         }
     }
@@ -34,7 +34,7 @@ public class CADO {
             st = this.conectar().createStatement();
             st.executeUpdate(sql);
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -82,7 +82,7 @@ public class CADO {
         try {
             stm = this.conectar().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             return stm.executeQuery(sql);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             return null;
         }
     }

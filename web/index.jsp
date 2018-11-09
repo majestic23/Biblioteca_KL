@@ -28,14 +28,21 @@
         <!------------           nav    ------------------->
         <nav class="blue-grey lighten-2" role="navigation">
             <div class="nav-wrapper container">
-                <a class="brand-logo" href="#"><i class="material-icons">cloud</i>Logo</a>  
+                <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Logo</a>  
                 <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-small-only">
-                    <li><a href="#"><i class="material-icons left">search</i></a></li>
-                    <li><a href="#"><i class="material-icons">view_module</i></a></li>
+                    <li><a href="#">Sign-in</a></li>
+                    <li class="sidenav-trigger left" data-target="slide-out-usuario"><a href="#"><i class="material-icons">view_module</i></a></li>
                 </ul>
             </div>
         </nav>
+        <!----          SideNav de usuario         ------>
+        <ul class="sidenav" id="slide-out-usuario">
+            <li><div class=""></div></li>
+            
+            <li>Prueba</li>
+        </ul>
+        <!----          SideNav de menus         ------>
         <ul class="sidenav" id="prueba-movil">
             <li><a href="#">Buscar</a></li>
             <li><a href="#">Desplegar</a></li>
@@ -46,8 +53,11 @@
         </div>
         <div class="section white">
             <div class="row container">
-                <h2 class="header">Parallax</h2>
-                <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+                <h2 class="header">Biblioteca KL v.0.0.1</h2>
+                <p class="grey-text text-darken-3 lighten-3">
+                  Biblioteca KL es un software de bajo a mediano rendimiento, optimizado para la gestion de libros virtuales y la rapidez en procesos de alquiler y/o venta 
+                  que se produzcan en el proceso de negocio de la biblioteca en si.
+                </p>
             </div>
         </div>
         <div class="parallax-container">

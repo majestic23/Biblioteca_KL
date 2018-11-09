@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-(function($){
-  $(function(){
+(function ($) {
+    $(function () {
+        $(".dropdown-trigger").dropdown()
+        $('.sidenav').sidenav();
+        $('.parallax').parallax();
 
-    $('.sidenav').sidenav();
-    
-
-  }); // end of document ready
+    }); // end of document ready
 })(jQuery); // end of jQuery name space
- 
+
 
 

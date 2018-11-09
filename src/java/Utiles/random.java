@@ -5,6 +5,7 @@
  */
 package Utiles;
 
+import Beans.Cliente;
 import java.util.Random;
 
 /**
@@ -20,13 +21,18 @@ public class random {
     }
     public int getRandomDni(){
         int i;
-        Double m = Math.random()*900000+70000000;
+        Double m = Math.random()*9000000+70000000;
         i = m.intValue();
         return i;
     }
     public String getRandomName(){
         String nombres[] = {"Manuel","Mijail","Sheillah","Kathy","Monica","Luis"};
         return nombres[new Random().nextInt(nombres.length)];
+    }
+    public String getRandomUser(Cliente cliente){
+        String usuario ="";
+        Object[] datos={cliente.getNombre_cliente(),cliente.getIdcliente()};
+        return usuario;
     }
     public static void main(String[] args) {
         random r  = new random();

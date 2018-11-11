@@ -42,22 +42,23 @@
                         <h4>Login</h4>
                     </div>
                     <div class="card-content">
-                        <form action="#">
+                        <form action="Controlador" method="">
                             <div class="row">
                                 <div class="input-field">
-                                    <input id="user" type="text">
+                                    <input id="user" name="txtuser" type="text">
                                     <label for="user">Usuario</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field ">
-                                    <input id="password" type="password">
+                                    <input id="password" name="txtpassword" type="password">
                                     <label for="password">Contraseña</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="center-align">
-                                    <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                                    <button class="btn waves-effect waves-light" type="submit">Login
+                                        <input type="hidden" name="opc" value="11">
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>

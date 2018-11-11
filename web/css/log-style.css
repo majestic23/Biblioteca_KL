@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/11/2018, 09:04:24 PM
+    Author     : manue
+*/
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background: url(../images/background.jpg);
+    background-size: 100%;
+    color: #fff;
+    
+}
+ main {
+    flex: 1 0 auto;
+  }
+.login{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.login .card{
+    background: rgba(0,0,0,.6);
+}
+
+.login label{
+    font-size: 16px;
+    color: #ccc;
+}
+
+.login input{
+    font-size: 20px !important;
+    color: #fff;
+}
+
+.login button:hover{
+    padding: 0px 40px;
+}
+
+footer{
+    position: relative;
+}

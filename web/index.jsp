@@ -25,6 +25,7 @@
         </style>
     </head>
     <body>
+        <header>
         <!------------           nav    ------------------->
         <nav class="blue-grey lighten-2" role="navigation">
             <div class="nav-wrapper container">
@@ -57,6 +58,8 @@
             <li><a href="#">Buscar</a></li>
             <li><a href="#">Desplegar</a></li>
         </ul>
+        </header>
+        <main>
         <!------------           parallax    ------------------->
         <div class="parallax-container">
             <div class="parallax"><img src="images/1.jpg"></div>
@@ -73,6 +76,7 @@
         <div class="parallax-container">
             <div class="parallax"><img src="images/libro_abierto.jpg"></div>
         </div>
+        </main>
         <footer class="page-footer orange darken-3">
             <div class="container">
                 <div class="row">

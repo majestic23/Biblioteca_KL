@@ -54,6 +54,26 @@ public class Model_Cliente {
         }
     }
 
+    public List listarUsu(Object[] parametros) {
+        String sql = "SELECT * FROM cliente WHERE usuario_username=?";
+        List<Cliente> Cliente = new ArrayList<>();
+        if (parametros.length == 1) {
+            ResultSet rs = cado.Recuperar(sql, parametros);
+            try {
+                rs.beforeFirst();
+                while (rs.next()) {
+                    Cliente c = new Cliente(rs);
+                    Cliente.add(c);
+                }
+                return Cliente;
+            } catch (SQLException e) {
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+
     public boolean eliminar(Cliente cliente) {
         String sql = "DELETE FROM cliente WHERE idcliente=" + cliente.getIdcliente();
         return this.cado.Ejecutar(sql);

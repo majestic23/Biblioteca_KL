@@ -31,12 +31,12 @@ public class Model_Trabajador {
         return this.cado.Ejecutar(sql, trabajador.getModificar());
     }
 
-    public List listar(Object[] paramatetros){
+    public List listar(Object[] paramatetros) {
         ResultSet rs;
         String sql;
         if (paramatetros.length == 1) {
             sql = "SELECT * FROM trabajador WHERE idTrabajador=?";
-            rs= this.cado.Recuperar(sql, paramatetros);
+            rs = this.cado.Recuperar(sql, paramatetros);
         } else {
             sql = "SELECT * FROM trabajador";
             rs = this.cado.Recuperar(sql);
@@ -46,16 +46,36 @@ public class Model_Trabajador {
             rs.beforeFirst();
             while (rs.next()) {
                 Trabajador trabajador = new Trabajador(rs);
-                lista.add(trabajador);               
+                lista.add(trabajador);
             }
             return lista;
         } catch (SQLException e) {
             return null;
         }
     }
-    
-    public boolean eliminar(Trabajador trabajador){
-        String sql = "DELETE FROM trabajador WHERE idTrabajador="+trabajador.getIdtrabajador();
+
+    public List listarUsu(Object[] parametros) {
+        String sql = "SELECT * FROM trabajador WHERE usuario_username=?";
+        List<Trabajador> trabajador = new ArrayList<>();
+        if (parametros.length == 1) {
+            ResultSet rs = cado.Recuperar(sql, parametros);
+            try {
+                rs.beforeFirst();
+                while (rs.next()) {
+                    Trabajador t = new Trabajador(rs);
+                    trabajador.add(t);
+                }
+                return trabajador;
+            } catch (SQLException e) {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public boolean eliminar(Trabajador trabajador) {
+        String sql = "DELETE FROM trabajador WHERE idTrabajador=" + trabajador.getIdtrabajador();
         return this.cado.Ejecutar(sql);
     }
 }

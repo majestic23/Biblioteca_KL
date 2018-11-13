@@ -90,4 +90,9 @@ public class Usuario {
         return parametros;
     }
 
+    @Override
+    public String toString() {
+        return "username=" + username + ", email=" + email + ", password=" + password + '}';
+    }
+
 }

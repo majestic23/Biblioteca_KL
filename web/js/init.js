@@ -5,7 +5,7 @@
  */
 (function ($) {
     $(function () {
-        $(".dropdown-trigger").dropdown()
+        $(".dropdown-trigger").dropdown();
         $('.sidenav').sidenav();
         $('.parallax').parallax();
 

@@ -5,8 +5,12 @@
  */
 package Servlets;
 
+import Beans.Cliente;
+import Beans.Trabajador;
 import Beans.Usuario;
 import DATOS.CADO;
+import Modelos.Model_Cliente;
+import Modelos.Model_Trabajador;
 import Modelos.Model_Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,24 +47,58 @@ public class Controlador extends HttpServlet {
             ResultSet rs;
             int opc = Integer.parseInt(request.getParameter("opc"));
             switch (opc) {
-                
+
                 case 1://Default para retornar -> index
                     response.sendRedirect("index.jsp");
                     break;
-                case 11://Login
+                case 11://Login Proceso de validar usuario
                     String usu = request.getParameter("txtuser");
                     String contraseña = request.getParameter("txtpassword");
-                    Object[] param = {usu,contraseña};
-                    Model_Usuario mu = new Model_Usuario();
-                    List<Usuario>  usuario = mu.listar(param);
-                    if (!usuario.isEmpty() && usuario.size()==1) {
-                        request.getSession().setAttribute("user", usuario.get(0));
-                        request.getSession().setAttribute("password", null);//Te quedaste aca !
+                    if (!usu.equals("") && !contraseña.equals("") && contraseña.length() <= 6) {
+                        Object[] param = {usu, contraseña};
+                        Model_Usuario mu = new Model_Usuario();
+                        List<Usuario> usuario = mu.listar(param);
+                        if (!usuario.isEmpty() && usuario.size() == 1) {
+                            request.getSession().setAttribute("usuario", (Usuario) usuario.get(0));
+                            request.getSession().setAttribute("SesVal", true); //Usas un parametro para la validacion (Es abstracto)
+                            response.sendRedirect("Controlador?opc=111");
+                        } else {
+                            response.sendRedirect("Controlador?opc=1");
+                        }
+                    } else {
+                        response.sendRedirect("Controlador?opc=1");
                     }
                     break;
-                case 2:
+                case 111://Login Proceso de retornar valores de usuario -> redirige a Home
+                    if ((boolean) request.getSession().getAttribute("SesVal")) {
+                        Usuario u = (Usuario) request.getSession().getAttribute("usuario");
+                        Object[] param = {u.getUsername()};
+                        Model_Trabajador mt = new Model_Trabajador();
+                        Model_Cliente mc = new Model_Cliente();
+                        List<Trabajador> ts = mt.listarUsu(param);
+                        List<Cliente> cs = mc.listarUsu(param);
+                        if (!ts.isEmpty() && ts.size() == 1) {
+                            rd = request.getRequestDispatcher("home.jsp");
+                            Trabajador t = ts.get(0);
+                            request.getSession().setAttribute("tipo", "Trabajador");
+                            request.getSession().setAttribute("trabajador", t);
+                            rd.forward(request, response);
+                        } else if (!cs.isEmpty() && cs.size() == 1) {
+                            rd = request.getRequestDispatcher("home.jsp");
+                            Cliente c = cs.get(0);
+                            request.setAttribute("tipo", "cliente");
+                            request.setAttribute("cliente", c);
+                            rd.forward(request, response);
+                        }
+
+                    } else {
+                        response.sendRedirect("login.jsp");
+                    }
                     break;
-                 default:
+                case 9://Logout
+
+                    break;
+                default:
                     out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
                     out.println("</html>");
                     throw new AssertionError();

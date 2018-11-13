@@ -146,6 +146,18 @@ public class Test {
         }
     }
 
+    public void trabajador_usuario() {//Test para el Modelo_Trabajador::ListarUsuario():
+        Object[] param = {"admin"};
+        Model_Trabajador mt = new Model_Trabajador();
+        List<Trabajador> trabajador = mt.listarUsu(param);
+        System.out.println(trabajador.isEmpty());
+        if (trabajador.size() == 1) {
+            System.out.println("Existe un solo Trabajador en lista");
+        } else {
+            System.out.println("Existen varios trabajadores en lista");
+        }
+    }
+
     public void trabajadorEliminar() {//Test para el Modelo_Trabajador::Eliminar():
         Trabajador trabajador = new Trabajador(10028);
         Model_Trabajador mt = new Model_Trabajador();
@@ -174,6 +186,18 @@ public class Test {
         Object[] parametros = {};
         Model_Cliente mc = new Model_Cliente();
         List<Cliente> clientes = mc.listar(parametros);
+        System.out.println(clientes.isEmpty());
+        if (clientes.size() == 1) {
+            System.out.println("1 cliente en lista");
+        } else {
+            System.out.println("Varios clientes en lista");
+        }
+    }
+
+    public void cliente_usuario() {//Test para el Modelo_Cliente::ListarUsuario():
+        Object[] parametros = {"shei24"};
+        Model_Cliente mc = new Model_Cliente();
+        List<Cliente> clientes = mc.listarUsu(parametros);
         System.out.println(clientes.isEmpty());
         if (clientes.size() == 1) {
             System.out.println("1 cliente en lista");
@@ -279,7 +303,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
-//       Test test = new Test();
+        Test test = new Test();
 //        test.categoriaAgregar();
 //        test.categoriaEditar();
 //        test.categoriaListar();
@@ -291,10 +315,12 @@ public class Test {
 //        test.trabajadorAgregar();
 //        test.trabajadorModificar();
 //        test.trabajadorListar();
+//        test.trabajador_usuario();
 //        test.trabajadorEliminar();
 //        test.clienteAgregar();
 //        test.clienteModificar();
 //        test.clienteListar();
+//        test.cliente_usuario();
 //        test.clienteEliminar();
 //        test.libroAgregar();
 //        test.libroModificar();
@@ -304,6 +330,11 @@ public class Test {
 //        test.reservacionModificar();
 //       test.reservacionListar1();
 //       test.reservacionListar2();
+        List<String> lista = new ArrayList<>();
+        lista.add("Manuel");
+        lista.add("Mijail");
+        lista.add("Sheillah");
+        System.out.println(lista.get(0));
     }
 
 }

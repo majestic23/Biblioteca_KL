@@ -7,12 +7,12 @@
 <%@page import="Beans.Trabajador"%>
 <%@page import="Beans.Usuario"%>
 <%
-    Usuario usuario = null;
+    Usuario u = null;
     String tipo = null;
     Trabajador trabajador = null;
     Cliente cliente = null;
     if (request.getSession().getAttribute("user") != null) {
-            usuario = (Usuario)request.getSession().getAttribute("usuario");
+            u = (Usuario)request.getSession().getAttribute("usuario");
             tipo = request.getSession().getAttribute("tipo").toString();
             if (tipo.equals("trabajador")) {
                     trabajador = (Trabajador) request.getSession().getAttribute("t");

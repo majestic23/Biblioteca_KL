@@ -58,7 +58,7 @@ public class Controlador extends HttpServlet {
                         Object[] param = {usu, contraseña};
                         Model_Usuario mu = new Model_Usuario();
                         List<Usuario> usuario = mu.listar(param);
-                        if (!usuario.isEmpty() && usuario.size() == 1) {
+                        if (!usuario.isEmpty() && usuario.size() == 1 && !usuario.get(0).getUsername().equals(null)) {
                             request.getSession().setAttribute("usuario", (Usuario) usuario.get(0));
                             request.getSession().setAttribute("SesVal", true); //Usas un parametro para la validacion (Es abstracto)
                             response.sendRedirect("Controlador?opc=111");

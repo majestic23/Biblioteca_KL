@@ -102,4 +102,10 @@ public class Trabajador {
         };
         return parametros;
     }
+
+    @Override
+    public String toString() {
+        return "Trabajador{" + "idtrabajador=" + idtrabajador + ", nombre_trabajador=" + nombre_trabajador + ", dni_trabajador=" + dni_trabajador + ", usuario_username=" + usuario_username + '}';
+    }
+    
 }

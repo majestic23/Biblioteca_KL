@@ -18,11 +18,7 @@
 
 
         <title>Biblioteca_KL</title>
-        <style>
-
-
-
-        </style>
+        
     </head>
     <body>
         <header>
@@ -33,11 +29,11 @@
                 <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-small-only">
                     <li><a href="login.jsp">Sign-in</a></li>
-                    <li class="sidenav-trigger left" data-target="slide-out-usuario"><a href="#"><i class="material-icons">view_module</i></a></li>
+<!--                    <li class="sidenav-trigger left" data-target="slide-out-usuario"><a href="#"><i class="material-icons">view_module</i></a></li>-->
                 </ul>
             </div>
         </nav>
-        <!----          SideNav de usuario         ------>
+        <!----          SideNav de usuario      
         <ul class="sidenav" id="slide-out-usuario">
             <li><div class="user-view">
                     <div class="background">
@@ -53,6 +49,7 @@
             <li><a class="subheader">Subheader</a></li>
             <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
         </ul>
+        ---->
         <!----          SideNav de menus         ------>
         <ul class="sidenav" id="prueba-movil">
             <li><a href="#">Buscar</a></li>

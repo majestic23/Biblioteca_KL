@@ -5,8 +5,11 @@
  */
 package Servlets;
 
+import Beans.Usuario;
+import Modelos.Model_Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,17 +34,34 @@ public class Prueba extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Prueba</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Prueba at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            int opc = Integer.parseInt(request.getParameter("opc"));
+            switch (opc) {
+                
+             case 11://Login Proceso de validar usuario
+                    String usu = request.getParameter("txtuser");
+                    String contraseña = request.getParameter("txtpassword");
+                    if (!usu.equals("") && !contraseña.equals("") && contraseña.length() <= 6) {
+                        Object[] param = {usu, contraseña};
+                        Model_Usuario mu = new Model_Usuario();
+                        List<Usuario> usuario = mu.login(usu, contraseña);
+                        if (!usuario.isEmpty() && usuario.size() == 1) {
+                            request.getSession().setAttribute("usuario", (Usuario) usuario.get(0));
+                            request.getSession().setAttribute("SesVal", true); //Usas un parametro para la validacion (Es abstracto)
+                            response.sendRedirect("home.jsp");
+                        } else {
+                            response.sendRedirect("Controlador?opc=1");
+                        }
+                    } else {
+                        response.sendRedirect("Controlador?opc=1");
+                    }
+                    break;
+                    
+                default:
+                    throw new AssertionError();
+            
         }
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

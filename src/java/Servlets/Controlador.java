@@ -54,16 +54,15 @@ public class Controlador extends HttpServlet {
                 case 11://Login Proceso de validar usuario
                     String usu = request.getParameter("txtuser");
                     String contraseña = request.getParameter("txtpassword");
-                    if (!usu.equals("") && !contraseña.equals("") && contraseña.length() <= 6) {
-                        Object[] param = {usu, contraseña};
+                    if (!usu.equals("") && !contraseña.equals("")) {
                         Model_Usuario mu = new Model_Usuario();
-                        List<Usuario> usuario = mu.listar(param);
-                        if (!usuario.isEmpty() && usuario.size() == 1 && !usuario.get(0).getUsername().equals(null)) {
+                        List<Usuario> usuario = mu.login(usu, contraseña);
+                        if (!usuario.isEmpty() && usuario.size() == 1) {
                             request.getSession().setAttribute("usuario", (Usuario) usuario.get(0));
-                            request.getSession().setAttribute("SesVal", true); //Usas un parametro para la validacion (Es abstracto)
+                            request.getSession().setAttribute("SesVal", (boolean )true); //Usas un parametro para la validacion (Es abstracto)
                             response.sendRedirect("Controlador?opc=111");
                         } else {
-                            response.sendRedirect("Controlador?opc=1");
+                            response.sendRedirect("Controlador?opc=99");
                         }
                     } else {
                         response.sendRedirect("Controlador?opc=1");
@@ -77,16 +76,15 @@ public class Controlador extends HttpServlet {
                         Model_Cliente mc = new Model_Cliente();
                         List<Trabajador> ts = mt.listarUsu(param);
                         List<Cliente> cs = mc.listarUsu(param);
+                        rd = request.getRequestDispatcher("home.jsp");
                         if (!ts.isEmpty() && ts.size() == 1) {
-                            rd = request.getRequestDispatcher("home.jsp");
                             Trabajador t = ts.get(0);
                             request.getSession().setAttribute("tipo", "Trabajador");
                             request.getSession().setAttribute("trabajador", t);
                             rd.forward(request, response);
                         } else if (!cs.isEmpty() && cs.size() == 1) {
-                            rd = request.getRequestDispatcher("home.jsp");
                             Cliente c = cs.get(0);
-                            request.setAttribute("tipo", "cliente");
+                            request.setAttribute("tipo", "Cliente");
                             request.setAttribute("cliente", c);
                             rd.forward(request, response);
                         }

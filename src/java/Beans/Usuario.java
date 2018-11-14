@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class Usuario {
 
-    private String username;
+    private   String username;
     private String email;
     private String password;
 
@@ -68,9 +68,9 @@ public class Usuario {
     }
 
     public void setParametros(Object[] parametros) {
-        parametros[0] = this.username;
-        parametros[1] = this.email;
-        parametros[2] = this.password;
+        parametros[0] = (String)this.username;
+        parametros[1] = (String)this.email;
+        parametros[2] = (String)this.password;
     }
 
     public Object[] getParametros() {
@@ -92,7 +92,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "username=" + username + ", email=" + email + ", password=" + password + '}';
+        return "username=" + username + ", email=" + email + ", password=" + password;
     }
 
 }

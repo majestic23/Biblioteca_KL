@@ -30,30 +30,44 @@ public class Model_Usuario {
         return this.cado.Ejecutar(sql, usuario.getModificar());
     }
 
-    public List listar(Object[] parametros) {
+    public List listar(String username) {
         ResultSet rs;
-        String sql = "SELECT * FROM usuario";
-        if (parametros.length == 2) {
-            sql = "SELECT * FROM usuario WHERE username=? AND password=?";
-        } else if (parametros.length == 1) {
-            sql = "SELECT * FROM usuario WHERE username=?";
-        }
+        String sql = "SELECT * FROM `usuario` WHERE username='"+username+"'";
+        rs = this.cado.Recuperar(sql);
+        return list(rs);
+    }
+    public List login(String username, String password){
+        ResultSet rs;
+        String sql = "SELECT * FROM `usuario` WHERE username='"+username+"' AND"
+                + " password='"+password+"'";
+        rs = this.cado.Recuperar(sql);
+        return list(rs);
+    }
+    public List<Usuario> list(ResultSet rs){
         List<Usuario> lista = new ArrayList<>();
-        rs = this.cado.Recuperar(sql, parametros);
         try {
             rs.beforeFirst();
             while (rs.next()) {
-                Usuario usuario = new Usuario();
+                Usuario usuario = new Usuario(rs);//No olvides agregar los rs.
                 lista.add(usuario);
             }
-            return lista;
         } catch (SQLException e) {
-            return null;
+            lista = new ArrayList<>();
         }
+        return lista;
     }
 
     public boolean eliminar(Usuario usuario) {
         String sql = "DELETE FROM usuario WHERE username= '" + usuario.getUsername()+"'";
         return this.cado.Ejecutar(sql);
     }
+    
+//    public static void main(String[] args) {
+//        Object[]parametros={"admin","admin"};
+//        Model_Usuario mu = new Model_Usuario();
+//        
+//        List<Usuario> usu = mu.listar(parametros);
+//        System.out.println(usu.get(0).toString());
+//        
+//    }
 }

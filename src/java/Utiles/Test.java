@@ -95,9 +95,9 @@ public class Test {
     }
 
     public void usuarioListar() {//Test para el Modelo_Usuario::Listar():
-        Object[] parametros = {"monica24"};
+        Object[] parametros = {"admin","admin"};
         Model_Usuario mu = new Model_Usuario();
-        List<Usuario> lista = mu.listar(parametros);
+        List<Usuario> lista = mu.login((String)parametros[0],(String) parametros[1]);
         System.out.println(lista.isEmpty());
         if (lista.size() == 1) {
             System.out.println("Existe un solo usuario en lista");
@@ -330,11 +330,16 @@ public class Test {
 //        test.reservacionModificar();
 //       test.reservacionListar1();
 //       test.reservacionListar2();
-        List<String> lista = new ArrayList<>();
-        lista.add("Manuel");
-        lista.add("Mijail");
-        lista.add("Sheillah");
-        System.out.println(lista.get(0));
+        Object[] parametros = {"admin","admin"};
+        Model_Usuario mu = new Model_Usuario();
+        List<Usuario> lista = mu.login((String)parametros[0], (String)parametros[1]);
+        Usuario administrador = lista.get(0);
+        System.out.println(administrador.toString());
+        Object[] parametrost = {administrador.getUsername()};
+        Model_Trabajador mt = new Model_Trabajador();
+        List<Trabajador> trabajador = mt.listarUsu(parametrost);
+        Trabajador t = trabajador.get(0);
+        System.out.println(t.toString());
     }
 
 }

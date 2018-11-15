@@ -23,7 +23,7 @@
     <body>
         <header>
         <!------------           nav    ------------------->
-        <nav class="blue-grey lighten-2" role="navigation">
+        <nav class="blue-grey lighten-1" role="navigation">
             <div class="nav-wrapper container">
                 <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Logo</a>  
                 <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>

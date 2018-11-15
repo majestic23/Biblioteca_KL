@@ -149,7 +149,7 @@
                         </div>
                         <div class="card-content">
                             <span class="card-title">Algo más</span>
-                            <p class="waves-effect waves-green"><a href="Controlador?opc=2">Otra Opcion<i class="material-icons right">filter_tilt_shift</i></a></p>
+                            <p class="waves-effect waves-green"><a href="#!">Otra Opcion<i class="material-icons right">filter_tilt_shift</i></a></p>
                         </div>
                     </div>
                 </div>
@@ -169,12 +169,11 @@
 
             </div>
             <div class="col l3 s12">
-                <h5 class="white-text">Settings</h5>
+                <h5 class="white-text">Contacto</h5>
                 <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
+                    <li><a class="white-text" href="#!">Ubicacion</a></li>
+                    <li><a class="white-text" href="#!">Telefonos</a></li>
+                    <li><a class="white-text" href="#!">Correo Institucional</a></li>
                 </ul>
             </div>
             <div class="col l3 s12">

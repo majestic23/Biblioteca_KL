@@ -7,11 +7,11 @@
 <%@page import="Beans.Trabajador"%>
 <%@page import="Beans.Usuario"%>
 <%
-    Usuario u = (session.getAttribute("usuario")!= null)
-    ?(Usuario) session.getAttribute("usuario"): null;
+    Usuario u = (session.getAttribute("usuario") != null)
+            ? (Usuario) session.getAttribute("usuario") : null;
     if (u.equals(null)) {
-            response.sendRedirect("Controlador?opc=99");
-        }
+        response.sendRedirect("Controlador?opc=99");
+    }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
+        <link type="text/css" rel="stylesheet" href="css/style.css">
         <title>Home</title>
     </head>
     <body>

@@ -43,7 +43,7 @@
             <!------------           nav    ------------------->
             <nav class="blue-grey lighten-2" role="navigation">
                 <div class="nav-wrapper container">
-                    <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Logo</a>  
+                    <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
                     <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-small-only">
                         <li><a href="Controlador?opc=9">Logout</a></li>
@@ -61,11 +61,15 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>Mis reservas</a></li>
+                    <%if (t.equals(null)) {%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
+                <%    } else {%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
+                <%}%>
                 <li><a href="#!"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="subheader">Noticias</a></li>
-                <li><a class="waves-effect" href="#!">Calendario</a></li>
+                <li><a class="subheader">Accesorios</a></li>
+                <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
             </ul>
             <!----          SideNav de menus         ------>
             <ul class="sidenav" id="prueba-movil">
@@ -109,18 +113,21 @@
         <%    } else {%>
         <div class="container">
             <div row>
-                <h5 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h5>
+                <h3 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h3>
             </div>
             <div class="divider"></div>
             <div class="row">
                 <div class="col s4">
                     <div class="card small">
                         <div class="card-image">
-                            <img  src="images/background1.jpg">
+                            <img  src="images/pasillo.jpg">
                         </div>
                         <div class="card-content">
-                            <span class="card-title">Usuarios<i class="material-icons right">add</i></span>
-                            <p class="waves-effect waves-green"><a href="Controlador?opc=2">Ver más<i class="material-icons right">account_circle</i></a></p>
+                            <span class="card-title">Libros<i class="material-icons right"></i></span>
+                            <p class="waves-effect waves-green">
+                                <a href="Controlador?opc=2">Buscar<i class="material-icons right">book</i></a><br>
+                            </p>
+                            
                         </div>
                     </div>
                 </div>
@@ -132,6 +139,17 @@
                         <div class="card-content">
                             <span class="card-title">Reservaciones</span>
                             <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div class="card small">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="images/1.jpg">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">Algo más</span>
+                            <p class="waves-effect waves-green"><a href="Controlador?opc=2">Otra Opcion<i class="material-icons right">filter_tilt_shift</i></a></p>
                         </div>
                     </div>
                 </div>

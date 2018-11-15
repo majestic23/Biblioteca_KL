@@ -24,7 +24,7 @@
         <!------------           nav    ------------------->
         <nav class="blue-grey lighten-2" role="navigation">
             <div class="nav-wrapper container">
-                <a class="brand-logo" href="index.jsp"><i class="material-icons">local_library</i>Logo</a>  
+                <a class="brand-logo" href="index.jsp"><i class="material-icons">local_library</i>Biblioteca KL</a>  
                 <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-small-only">
                     <li><a href="#">Sign-in</a></li>

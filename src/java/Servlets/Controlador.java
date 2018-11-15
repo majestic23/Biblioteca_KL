@@ -15,7 +15,6 @@ import Modelos.Model_Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,6 +44,9 @@ public class Controlador extends HttpServlet {
             CADO cado = new CADO();
             RequestDispatcher rd;
             ResultSet rs;
+            Model_Usuario mu = new Model_Usuario();
+            Model_Trabajador mt = new Model_Trabajador();
+            Model_Cliente mc = new Model_Cliente();
             int opc = Integer.parseInt(request.getParameter("opc"));
             switch (opc) {
 
@@ -55,11 +57,10 @@ public class Controlador extends HttpServlet {
                     String usu = request.getParameter("txtuser");
                     String contraseña = request.getParameter("txtpassword");
                     if (!usu.equals("") && !contraseña.equals("")) {
-                        Model_Usuario mu = new Model_Usuario();
                         List<Usuario> usuario = mu.login(usu, contraseña);
                         if (!usuario.isEmpty() && usuario.size() == 1) {
                             request.getSession().setAttribute("usuario", (Usuario) usuario.get(0));
-                            request.getSession().setAttribute("SesVal", (boolean )true); //Usas un parametro para la validacion (Es abstracto)
+                            request.getSession().setAttribute("SesVal", (boolean) true); //Usas un parametro para la validacion (Es abstracto)
                             response.sendRedirect("Controlador?opc=111");
                         } else {
                             response.sendRedirect("Controlador?opc=99");
@@ -72,8 +73,6 @@ public class Controlador extends HttpServlet {
                     if ((boolean) request.getSession().getAttribute("SesVal")) {
                         Usuario u = (Usuario) request.getSession().getAttribute("usuario");
                         Object[] param = {u.getUsername()};
-                        Model_Trabajador mt = new Model_Trabajador();
-                        Model_Cliente mc = new Model_Cliente();
                         List<Trabajador> ts = mt.listarUsu(param);
                         List<Cliente> cs = mc.listarUsu(param);
                         rd = request.getRequestDispatcher("home.jsp");
@@ -84,8 +83,8 @@ public class Controlador extends HttpServlet {
                             rd.forward(request, response);
                         } else if (!cs.isEmpty() && cs.size() == 1) {
                             Cliente c = cs.get(0);
-                            request.setAttribute("tipo", "Cliente");
-                            request.setAttribute("cliente", c);
+                            request.getSession().setAttribute("tipo", "Cliente");
+                            request.getSession().setAttribute("cliente", c);
                             rd.forward(request, response);
                         }
 

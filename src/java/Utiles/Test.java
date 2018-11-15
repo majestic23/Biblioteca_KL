@@ -330,16 +330,16 @@ public class Test {
 //        test.reservacionModificar();
 //       test.reservacionListar1();
 //       test.reservacionListar2();
-        Object[] parametros = {"admin","admin"};
+        Object[] parametros = {"mqc22","mija22"};
         Model_Usuario mu = new Model_Usuario();
         List<Usuario> lista = mu.login((String)parametros[0], (String)parametros[1]);
-        Usuario administrador = lista.get(0);
-        System.out.println(administrador.toString());
-        Object[] parametrost = {administrador.getUsername()};
-        Model_Trabajador mt = new Model_Trabajador();
-        List<Trabajador> trabajador = mt.listarUsu(parametrost);
-        Trabajador t = trabajador.get(0);
-        System.out.println(t.toString());
+        Usuario clienteee = lista.get(0);
+        System.out.println(clienteee.toString());
+        Object[] parametrosC = {clienteee.getUsername()};
+        Model_Cliente mc = new Model_Cliente();
+        List<Cliente> c = mc.listarUsu(parametrosC);
+        Cliente cliente = c.get(0);
+        System.out.println(cliente.toString());
     }
 
 }

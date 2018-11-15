@@ -4,17 +4,9 @@
         <servlet-name>Controlador</servlet-name>
         <servlet-class>Servlets.Controlador</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Prueba</servlet-name>
-        <servlet-class>Servlets.Prueba</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Prueba</servlet-name>
-        <url-pattern>/Prueba</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

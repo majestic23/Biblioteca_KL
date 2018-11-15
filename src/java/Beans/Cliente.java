@@ -87,4 +87,10 @@ public class Cliente {
         };
         return parametros;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "idcliente=" + idcliente + ", nombre_cliente=" + nombre_cliente + ", usuario_username=" + usuario_username + '}';
+    }
+    
 }

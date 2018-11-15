@@ -7,10 +7,23 @@
 <%@page import="Beans.Trabajador"%>
 <%@page import="Beans.Usuario"%>
 <%
+    Trabajador t;
+    Cliente c;
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
+    String tipo;
     if (u.equals(null)) {
         response.sendRedirect("Controlador?opc=99");
+    } else {
+        tipo = (session.getAttribute("tipo") != null)
+            ? (String) session.getAttribute("tipo") : null;
+        if (tipo.equals("Trabajador")) {
+            t = (session.getAttribute("trabajador") != null)
+                    ? (Trabajador) session.getAttribute("trabajador") : null;
+        } else if (tipo.equals("Cliente")) {
+            c = (session.getAttribute("cliente") != null)
+                    ? (Cliente) session.getAttribute("cliente") : null;
+        }
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -48,7 +61,7 @@
                         </div>
                         <a href="#user"><img class="circle" src="images/user_default.png"></a>
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
-                        <a href="#email"><span class="white-text email"></span></a>
+                        <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
                 <li><a href="#!"><i class="material-icons">cloud</i>Mis reservas</a></li>
                 <li><a href="#!"><i class="material-icons">settings</i>Configuracion</a></li>
@@ -63,7 +76,7 @@
             </ul>
         </header>
         <main>
-            
+
         </main>
 
         <footer class="page-footer orange darken-3">

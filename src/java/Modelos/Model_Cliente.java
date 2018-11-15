@@ -60,19 +60,9 @@ public class Model_Cliente {
 
     public List listarUsu(Object[] parametros) {
         String sql = "SELECT * FROM cliente WHERE usuario_username=?";
-        List<Cliente> Cliente = new ArrayList<>();
         if (parametros.length == 1) {
             ResultSet rs = cado.Recuperar(sql, parametros);
-            try {
-                rs.beforeFirst();
-                while (rs.next()) {
-                    Cliente c = new Cliente(rs);
-                    Cliente.add(c);
-                }
-                return Cliente;
-            } catch (SQLException e) {
-                return null;
-            }
+            return list(rs);
         }else{
             return null;
         }

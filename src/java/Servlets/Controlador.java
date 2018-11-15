@@ -63,7 +63,7 @@ public class Controlador extends HttpServlet {
                             request.getSession().setAttribute("SesVal", (boolean) true); //Usas un parametro para la validacion (Es abstracto)
                             response.sendRedirect("Controlador?opc=111");
                         } else {
-                            response.sendRedirect("Controlador?opc=99");
+                            response.sendRedirect("Controlador?opc=1");
                         }
                     } else {
                         response.sendRedirect("Controlador?opc=1");
@@ -91,6 +91,9 @@ public class Controlador extends HttpServlet {
                     } else {
                         response.sendRedirect("login.jsp");
                     }
+                    break;
+                case 2:
+                    
                     break;
                 case 9://Logout
 

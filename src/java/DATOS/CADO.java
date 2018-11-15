@@ -17,8 +17,8 @@ public class CADO {
                 + servidorBD + ":" + puertoBD + "/" + BD;
 
         Properties parametros = new Properties();
-        parametros.put("user", "root");
-        parametros.put("password", "");
+        parametros.put("user", "admin");
+        parametros.put("password", "admin");
         try {
             Class.forName("com.mysql.jdbc.Driver");
             return DriverManager.getConnection(cadenaConexion, parametros);

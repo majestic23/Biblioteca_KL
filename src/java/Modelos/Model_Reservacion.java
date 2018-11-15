@@ -40,6 +40,10 @@ public class Model_Reservacion {
             sql = "SELECT * FROM reservacion";
             rs = this.cado.Recuperar(sql);
         }
+        return list(rs);
+    }
+
+    public List<Reservacion> list(ResultSet rs){
         List<Reservacion> Lista = new ArrayList<>();
         try {
             rs.beforeFirst();
@@ -52,7 +56,6 @@ public class Model_Reservacion {
             return null;
         }
     }
-
     public List ListarporLibro(Object[] Parametros) {
         ResultSet rs;
         String sql;

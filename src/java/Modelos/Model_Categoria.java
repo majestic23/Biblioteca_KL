@@ -40,6 +40,9 @@ public class Model_Categoria {
             sql = "SELECT * FROM categoria";
             rs = this.cado.Recuperar(sql);
         }
+        return list(rs);
+    }
+    public List<Categoria> list(ResultSet rs){
         List<Categoria> lista = new ArrayList<>();
         try {
             rs.beforeFirst();
@@ -52,7 +55,6 @@ public class Model_Categoria {
             return null;
         }
     }
-    
     public boolean eleminiar(Categoria categoria){
         String sql = "DELETE FROM categoria WHERE idcategoria="+categoria.getIdcategoria();
         return this.cado.Ejecutar(sql);

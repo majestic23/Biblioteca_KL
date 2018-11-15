@@ -41,6 +41,10 @@ public class Model_Cliente {
             sql = "SELECT * FROM cliente";
             rs = this.cado.Recuperar(sql);
         }
+        return list(rs);
+    }
+    
+    public List<Cliente> list(ResultSet rs){
         List<Cliente> Lista = new ArrayList<>();
         try {
             rs.beforeFirst();

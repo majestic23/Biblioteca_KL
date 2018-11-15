@@ -39,7 +39,10 @@ public class Model_Libro {
             sql = "SELECT * FROM libro";
             rs = this.cado.Recuperar(sql);
         }
-        List<Libro> Lista = new ArrayList<>();
+        return list(rs);
+    }
+     public List<Libro> list(ResultSet rs){
+         List<Libro> Lista = new ArrayList<>();
         try {
             rs.beforeFirst();
             while (rs.next()) {
@@ -50,7 +53,7 @@ public class Model_Libro {
         } catch (SQLException e) {
             return null;
         }
-    }
+     }
       public boolean eliminar(Libro libro) {
         String sql = "DELETE FROM libro WHERE idLibro=" + libro.getIdlibro();
         return this.cado.Ejecutar(sql);

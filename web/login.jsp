@@ -35,7 +35,7 @@
         </header>
         <main>
         <!-------   Login form ------->
-        <div class="row login">
+        <div class="row login" id="central">
             <div class="col s12 l4 offset-l4">
                 <div class="card">
                     <div class="card-action grey darken-3 white-text">

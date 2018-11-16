@@ -92,8 +92,54 @@ public class Controlador extends HttpServlet {
                         response.sendRedirect("login.jsp");
                     }
                     break;
-                case 2:
-                    
+                case 4:
+                    Usuario u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    Trabajador t = (request.getSession().getAttribute("trabajador") != null)
+                            ? (Trabajador) request.getSession().getAttribute("trabajador") : null;
+                    Cliente c = (request.getSession().getAttribute("cliente") != null)
+                            ? (Cliente) request.getSession().getAttribute("cliente") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        if (t == null && c != null) {
+                            rd = request.getRequestDispatcher("home.jsp");
+                            Object[] paramUsuario = {
+                                request.getParameter("txtUsername"),
+                                request.getParameter("txtEmail"),
+                                request.getParameter("txtPassword"),
+                                u.getUsername()
+                            };
+                            Object[] paramCliente = {
+                                request.getParameter("txtNombre"),
+                                request.getParameter("txtUsername"),
+                                c.getIdcliente(),};
+                            if (mu.modificar(paramUsuario) && mc.modificar(paramCliente)) {
+                                rd.forward(request, response);
+                            } else {
+                                response.sendRedirect("Controlador?opc=99");
+                            }
+                        } else if (c == null && t != null) {
+                            rd = request.getRequestDispatcher("home.jsp");
+                            Object[] paramUsuario = {
+                                request.getParameter("txtUsername"),
+                                request.getParameter("txtEmail"),
+                                request.getParameter("txtPassword"),
+                                u.getUsername()
+                            };
+                            Object[] paramTrabajador = {
+                                request.getParameter("txtNombre"),
+                                t.getDni_trabajador(),
+                                request.getParameter("txtUsername"),
+                                t.getIdtrabajador()
+                            };
+                            if (mu.modificar(paramUsuario) && mt.modificar(paramTrabajador)) {
+                                rd.forward(request, response);
+                            } else {
+                                response.sendRedirect("Controlador?opc=99");
+                            }
+                        }
+                    }
                     break;
                 case 9://Logout
 

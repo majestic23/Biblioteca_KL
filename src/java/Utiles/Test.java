@@ -89,15 +89,15 @@ public class Test {
     }
 
     public void usuarioModificar() {//Test para el Modelo_Usuario::Modificar():
-        Usuario user = new Usuario("monica24", "modificada");
+        Object[] parametros = {"monica24", "modificada"};
         Model_Usuario mu = new Model_Usuario();
-        System.out.println(mu.modificar(user));
+        System.out.println(mu.modificar(parametros));
     }
 
     public void usuarioListar() {//Test para el Modelo_Usuario::Listar():
-        Object[] parametros = {"admin","admin"};
+        Object[] parametros = {"admin", "admin"};
         Model_Usuario mu = new Model_Usuario();
-        List<Usuario> lista = mu.login((String)parametros[0],(String) parametros[1]);
+        List<Usuario> lista = mu.login((String) parametros[0], (String) parametros[1]);
         System.out.println(lista.isEmpty());
         if (lista.size() == 1) {
             System.out.println("Existe un solo usuario en lista");
@@ -126,12 +126,9 @@ public class Test {
     }
 
     public void trabajadorModificar() {//Test para el Modelo_Trabajador::Modificar():
-        List<Trabajador> trabajadores = new ArrayList<>();
-        trabajadores.add(new Trabajador(10028, "Mijail-Editado", 71820913, "mija22"));
+        Object[] trabajador = {10028, "Mijail-Editado", 71820913, "mija22", 10028};
         Model_Trabajador mt = new Model_Trabajador();
-        trabajadores.forEach((trabajador) -> {
-            System.out.println(mt.modificar(trabajador));
-        });
+        System.out.println(mt.modificar(trabajador));
     }
 
     public void trabajadorListar() {//Test para el Modelo_Trabajador::Listar():
@@ -177,9 +174,9 @@ public class Test {
     }
 
     public void clienteModificar() {//Test para el Modelo_Cliente::Modificar():
-        Cliente cliente = new Cliente(10094, "Cliente1-Sheillah", "shei24");
+        Object[] parametros = {10094, "Cliente1-Sheillah", "shei24"};
         Model_Cliente mc = new Model_Cliente();
-        System.out.println(mc.modificar(cliente));
+        System.out.println(mc.modificar(parametros));
     }
 
     public void clienteListar() {//Test para el Modelo_Cliente::Listar():
@@ -330,9 +327,9 @@ public class Test {
 //        test.reservacionModificar();
 //       test.reservacionListar1();
 //       test.reservacionListar2();
-        Object[] parametros = {"mqc22","mija22"};
+        Object[] parametros = {"mqc22", "mija22"};
         Model_Usuario mu = new Model_Usuario();
-        List<Usuario> lista = mu.login((String)parametros[0], (String)parametros[1]);
+        List<Usuario> lista = mu.login((String) parametros[0], (String) parametros[1]);
         Usuario clienteee = lista.get(0);
         System.out.println(clienteee.toString());
         Object[] parametrosC = {clienteee.getUsername()};

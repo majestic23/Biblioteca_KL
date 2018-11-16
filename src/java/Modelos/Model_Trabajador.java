@@ -25,10 +25,10 @@ public class Model_Trabajador {
         return this.cado.Ejecutar(sql, trabajador.getParametros());
     }
 
-    public boolean modificar(Trabajador trabajador) {
+    public boolean modificar(Object[] parametros) {
         String sql = "UPDATE trabajador SET  nombre_trabajador=?, dni_trabajador=?, usuario_username=? "
                 + "WHERE idTrabajador=?";
-        return this.cado.Ejecutar(sql, trabajador.getModificar());
+        return this.cado.Ejecutar(sql, parametros);
     }
 
     public List listar(Object[] paramatetros) {

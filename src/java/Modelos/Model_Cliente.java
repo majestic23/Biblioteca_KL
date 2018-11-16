@@ -25,10 +25,10 @@ public class Model_Cliente {
         return this.cado.Ejecutar(sql, cliente.getParametros());
     }
 
-    public boolean modificar(Cliente cliente) {
+    public boolean modificar(Object[] parametros) {
         String sql = "UPDATE cliente SET nombre_cliente=?, usuario_username=? "
                 + "WHERE idcliente=?";
-        return this.cado.Ejecutar(sql, cliente.getModificar());
+        return this.cado.Ejecutar(sql, parametros);
     }
 
     public List listar(Object[] Parametros) {

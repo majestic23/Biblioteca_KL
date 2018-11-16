@@ -25,9 +25,9 @@ public class Model_Usuario {
         return this.cado.Ejecutar(sql, usuario.getParametros());
     }
 
-    public boolean modificar(Usuario usuario) {
-        String sql = "UPDATE usuario SET password=? WHERE username=?";
-        return this.cado.Ejecutar(sql, usuario.getModificar());
+    public boolean modificar(Object[] parametros) {
+        String sql = "UPDATE usuario SET username=?,email=?, password=? WHERE username=?";
+        return this.cado.Ejecutar(sql, parametros);
     }
 
     public List listar(String username) {

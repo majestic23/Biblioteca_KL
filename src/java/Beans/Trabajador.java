@@ -93,19 +93,10 @@ public class Trabajador {
         return parametros;
     }
 
-    public Object[] getModificar() {
-        Object[] parametros = {
-            this.nombre_trabajador,
-            this.dni_trabajador,
-            this.usuario_username,
-            this.idtrabajador
-        };
-        return parametros;
-    }
-
+    
     @Override
     public String toString() {
         return "Trabajador{" + "idtrabajador=" + idtrabajador + ", nombre_trabajador=" + nombre_trabajador + ", dni_trabajador=" + dni_trabajador + ", usuario_username=" + usuario_username + '}';
     }
-    
+
 }

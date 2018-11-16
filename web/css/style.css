@@ -18,3 +18,7 @@ and open the template in the editor.
   main {
     flex: 1 0 auto;
   }
+  
+  ul a {
+      color: #444;
+  }

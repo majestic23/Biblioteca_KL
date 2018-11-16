@@ -66,7 +66,7 @@
                 <%    } else {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
                 <%}%>
-                <li><a href="#!"><i class="material-icons">settings</i>Configuracion</a></li>
+                <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Accesorios</a></li>
                 <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>

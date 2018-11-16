@@ -95,6 +95,16 @@ public class Controlador extends HttpServlet {
                 case 4:
                     Usuario u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        response.sendRedirect("config.jsp");
+                    }
+                    break;
+                case 41:
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     Trabajador t = (request.getSession().getAttribute("trabajador") != null)
                             ? (Trabajador) request.getSession().getAttribute("trabajador") : null;
                     Cliente c = (request.getSession().getAttribute("cliente") != null)

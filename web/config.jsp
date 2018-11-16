@@ -84,9 +84,9 @@
                         <h3 class="center-align">Configuracion</h3>
                     </div>
                     <div class="divider"></div>
-                    <form action="controlador" method="post" onsubmit="return validarEditar()">
+                    <form action="Controlador" method="post">
                         <div class="container section">
-                            <table class="striped responsive-table">
+                            <table class="responsive-table">
                                 <tr>
                                     <th>Usuario</th>
                                     <td><input type="text" name="txtUsername" value="<%=u.getUsername()%>"></td>
@@ -111,8 +111,8 @@
                         </div>
                         <div class="divider"></div>
                         <div class="section center-align">
-                            <input type="hidden" name="opc" value="4"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
-                            <a href="controlador?opc=99" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                            <input type="hidden" name="opc" value="41"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                            <a href="Controlador?opc=99" class="waves-effect waves-green btn-flat">Cancelar</a>
                         </div>
                     </form>
                 </div>

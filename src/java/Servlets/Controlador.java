@@ -113,7 +113,7 @@ public class Controlador extends HttpServlet {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
                         if (t == null && c != null) {
-                            rd = request.getRequestDispatcher("home.jsp");
+                            rd = request.getRequestDispatcher("Controlador?opc=111");
                             Object[] paramUsuario = {
                                 request.getParameter("txtUsername"),
                                 request.getParameter("txtEmail"),

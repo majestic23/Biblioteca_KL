@@ -93,9 +93,9 @@
                             <tr>
                                 <th>Nombre</th>
                                     <%if (t.equals(null)) {%>
-                                <td><input type="text" name="txtNombre"value="<%=c.getNombre_cliente()%>"></td>
-                                    <%  } else {%>
                                 <td><input type="text" name="txtNombre"value="<%=t.getNombre_trabajador()%>"></td>
+                                    <%  } else {%>
+                                <td><input type="text" name="txtNombre"value="<%=c.getNombre_cliente()%>"></td>
                                     <%}%>
                             </tr>
                             <tr>

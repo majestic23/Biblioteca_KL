@@ -60,12 +60,8 @@ public class Model_Cliente {
 
     public List listarUsu(Object[] parametros) {
         String sql = "SELECT * FROM cliente WHERE usuario_username=?";
-        if (parametros.length == 1) {
-            ResultSet rs = cado.Recuperar(sql, parametros);
-            return list(rs);
-        }else{
-            return null;
-        }
+        ResultSet rs = cado.Recuperar(sql,parametros);
+        return list(rs);
     }
 
     public boolean eliminar(Cliente cliente) {

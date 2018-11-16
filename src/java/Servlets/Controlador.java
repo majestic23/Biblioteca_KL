@@ -95,7 +95,6 @@ public class Controlador extends HttpServlet {
                 case 4:
                     Usuario u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
-                    
                     if (u == null) {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
@@ -123,7 +122,7 @@ public class Controlador extends HttpServlet {
                             Object[] paramCliente = {
                                 request.getParameter("txtNombre"),
                                 request.getParameter("txtUsername"),
-                                c.getIdcliente(),};
+                                c.getIdcliente()};
                             if (mu.modificar(paramUsuario) && mc.modificar(paramCliente)) {
                                 rd.forward(request, response);
                             } else {

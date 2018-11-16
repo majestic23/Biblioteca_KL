@@ -327,7 +327,7 @@ public class Test {
 //        test.reservacionModificar();
 //       test.reservacionListar1();
 //       test.reservacionListar2();
-        Object[] parametros = {"mqc22", "mija22"};
+        Object[] parametros = {"shei24", "123456"};
         Model_Usuario mu = new Model_Usuario();
         List<Usuario> lista = mu.login((String) parametros[0], (String) parametros[1]);
         Usuario clienteee = lista.get(0);

@@ -78,7 +78,7 @@
             </ul>
         </header>
         <main>
-            <%if (t.equals(null)) {%>
+            <%if (!t.equals(null)) {%>
             <div class="container">
                 <div row>
                     <h5 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h5>

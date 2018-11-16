@@ -78,44 +78,42 @@
             </ul>
         </header>
         <main>
-            <div>
-                <div class="container z-depth-3">
-                    <div class="section">
-                        <h3 class="center-align">Configuracion</h3>
+            <div class="container z-depth-3" id="central">
+                <div class="section">
+                    <h3 class="center-align">Configuracion</h3>
+                </div>
+                <div class="divider"></div>
+                <form action="Controlador" method="post">
+                    <div class="container section">
+                        <table class="responsive-table">
+                            <tr>
+                                <th>Usuario</th>
+                                <td><input type="text" name="txtUsername" value="<%=u.getUsername()%>"></td>
+                            </tr>
+                            <tr>
+                                <th>Nombre</th>
+                                    <%if (t.equals(null)) {%>
+                                <td><input type="text" name="txtNombre"value="<%=c.getNombre_cliente()%>"></td>
+                                    <%  } else {%>
+                                <td><input type="text" name="txtNombre"value="<%=t.getNombre_trabajador()%>"></td>
+                                    <%}%>
+                            </tr>
+                            <tr>
+                                <th>Correo</th>
+                                <td><input type="email" name="txtEmail" value="<%=u.getEmail()%>"></td>
+                            </tr>
+                            <tr>
+                                <th>Contraseña</th>
+                                <td><input type="password" name="txtPassword" value="<%=u.getPassword()%>"></td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="divider"></div>
-                    <form action="Controlador" method="post">
-                        <div class="container section">
-                            <table class="responsive-table">
-                                <tr>
-                                    <th>Usuario</th>
-                                    <td><input type="text" name="txtUsername" value="<%=u.getUsername()%>"></td>
-                                </tr>
-                                <tr>
-                                    <th>Nombre</th>
-                                        <%if (t.equals(null)) {%>
-                                    <td><input type="text" name="txtNombre"value="<%=c.getNombre_cliente()%>"></td>
-                                        <%  } else {%>
-                                    <td><input type="text" name="txtNombre"value="<%=t.getNombre_trabajador()%>"></td>
-                                        <%}%>
-                                </tr>
-                                <tr>
-                                    <th>Correo</th>
-                                    <td><input type="email" name="txtEmail" value="<%=u.getEmail()%>"></td>
-                                </tr>
-                                <tr>
-                                    <th>Contraseña</th>
-                                    <td><input type="password" name="txtPassword" value="<%=u.getPassword()%>"></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="section center-align">
-                            <input type="hidden" name="opc" value="41"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
-                            <a href="Controlador?opc=99" class="waves-effect waves-green btn-flat">Cancelar</a>
-                        </div>
-                    </form>
-                </div>
+                    <div class="section center-align">
+                        <input type="hidden" name="opc" value="41"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                        <a href="Controlador?opc=111" class="waves-effect waves-green btn-flat">Cancelar</a>
+                    </div>
+                </form>
             </div>
         </main>
         <footer class="page-footer orange darken-3">

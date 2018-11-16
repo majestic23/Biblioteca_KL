@@ -22,3 +22,23 @@ and open the template in the editor.
   ul a {
       color: #444;
   }
+ 
+  #central{
+      margin-top: 3em;
+  }
+  
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}

@@ -63,9 +63,9 @@
                     </div></li>
                     <%if (t.equals(null)) {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
-                <%    } else {%>
+                    <%    } else {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
-                <%}%>
+                    <%}%>
                 <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Accesorios</a></li>
@@ -78,21 +78,26 @@
             </ul>
         </header>
         <main>
-            <%if (t.equals(null)) {%>
+            <%if (t == null && c != null) {%>
             <div class="container">
                 <div row>
-                    <h5 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h5>
+                    <h5 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h5>
+                    <h5><%=c.toString()%></h5>
+                    <h5><%=t.toString()%></h5>
                 </div>
                 <div class="divider"></div>
                 <div class="row">
                     <div class="col s4">
                         <div class="card small">
                             <div class="card-image">
-                                <img  src="images/background1.jpg">
+                                <img  src="images/pasillo.jpg">
                             </div>
                             <div class="card-content">
-                                <span class="card-title">Usuarios<i class="material-icons right">add</i></span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=2">Ver más<i class="material-icons right">account_circle</i></a></p>
+                                <span class="card-title">Libros<i class="material-icons right"></i></span>
+                                <p class="waves-effect waves-green">
+                                    <a href="Controlador?opc=2">Buscar<i class="material-icons right">book</i></a><br>
+                                </p>
+
                             </div>
                         </div>
                     </div>
@@ -107,27 +112,37 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col s4">
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/1.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Algo más</span>
+                                <p class="waves-effect waves-green"><a href="#!">Otra Opcion<i class="material-icons right">filter_tilt_shift</i></a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <%    } else {%>
+        <%    } else  if (c == null && t != null){%>
         <div class="container">
             <div row>
-                <h3 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h3>
+                <h3 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h3>
+                <h5><%=c.toString()%></h5>
+                <h5><%=t.toString()%></h5>
             </div>
             <div class="divider"></div>
             <div class="row">
                 <div class="col s4">
                     <div class="card small">
                         <div class="card-image">
-                            <img  src="images/pasillo.jpg">
+                            <img  src="images/background1.jpg">
                         </div>
                         <div class="card-content">
-                            <span class="card-title">Libros<i class="material-icons right"></i></span>
-                            <p class="waves-effect waves-green">
-                                <a href="Controlador?opc=2">Buscar<i class="material-icons right">book</i></a><br>
-                            </p>
-                            
+                            <span class="card-title">Usuarios<i class="material-icons right">add</i></span>
+                            <p class="waves-effect waves-green"><a href="Controlador?opc=2">Ver más<i class="material-icons right">account_circle</i></a></p>
                         </div>
                     </div>
                 </div>
@@ -139,17 +154,6 @@
                         <div class="card-content">
                             <span class="card-title">Reservaciones</span>
                             <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s4">
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="images/1.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">Algo más</span>
-                            <p class="waves-effect waves-green"><a href="#!">Otra Opcion<i class="material-icons right">filter_tilt_shift</i></a></p>
                         </div>
                     </div>
                 </div>

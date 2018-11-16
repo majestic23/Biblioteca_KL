@@ -38,8 +38,9 @@ public class Model_Usuario {
     }
     public List login(String username, String password){
         ResultSet rs;
-        String sql = "SELECT * FROM `usuario` WHERE username='"+username+"' AND"
-                + " password='"+password+"'";
+        String sql = "SELECT * FROM `usuario` WHERE username=? AND"
+                + " password=?";
+        Object[] os = {username,password};
         rs = this.cado.Recuperar(sql);
         return list(rs);
     }

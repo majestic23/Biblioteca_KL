@@ -42,8 +42,7 @@ public class Controlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             CADO cado = new CADO();
-            RequestDispatcher rd;
-            ResultSet rs;
+            RequestDispatcher rd = null;
             Model_Usuario mu = new Model_Usuario();
             Model_Trabajador mt = new Model_Trabajador();
             Model_Cliente mc = new Model_Cliente();
@@ -56,11 +55,11 @@ public class Controlador extends HttpServlet {
                 case 11://Login Proceso de validar usuario
                     String usu = request.getParameter("txtuser");
                     String contraseña = request.getParameter("txtpassword");
+                    List<Usuario> usuario = mu.login(usu, contraseña);
                     if (!usu.equals("") && !contraseña.equals("")) {
-                        List<Usuario> usuario = mu.login(usu, contraseña);
-                        if (!usuario.isEmpty() && usuario.size() == 1) {
+                        if (usuario.size() == 1) {
                             request.getSession().setAttribute("usuario", (Usuario) usuario.get(0));
-                            request.getSession().setAttribute("SesVal", (boolean) true); //Usas un parametro para la validacion (Es abstracto)
+                            request.getSession().setAttribute("Validacion", true); //Usas un parametro para la validacion (Es abstracto)
                             response.sendRedirect("Controlador?opc=111");
                         } else {
                             response.sendRedirect("Controlador?opc=1");
@@ -70,7 +69,7 @@ public class Controlador extends HttpServlet {
                     }
                     break;
                 case 111://Login Proceso de retornar valores de usuario -> redirige a Home
-                    if ((boolean) request.getSession().getAttribute("SesVal")) {
+                    if ((boolean) request.getSession().getAttribute("Validacion")) {
                         Usuario u = (Usuario) request.getSession().getAttribute("usuario");
                         Object[] param = {u.getUsername()};
                         List<Trabajador> ts = mt.listarUsu(param);
@@ -151,7 +150,11 @@ public class Controlador extends HttpServlet {
                     }
                     break;
                 case 9://Logout
-
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u==null) {
+                        
+                    }
                     break;
                 default:
                     out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");

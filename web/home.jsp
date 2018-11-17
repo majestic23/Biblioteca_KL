@@ -61,7 +61,7 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                    <%if (t.equals(null)) {%>
+                    <%if (!t.equals(null)) {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
                     <%    } else {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
@@ -78,7 +78,40 @@
             </ul>
         </header>
         <main>
-            <%if (t == null && c != null) {%>
+            <%if (!t.equals(null)) {%>
+            <div class="container">
+                <div row>
+                    <h3 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h3>
+                    <h5><%=c.toString()%></h5>
+                    <h5><%=t.toString()%></h5>
+                </div>
+                <div class="divider"></div>
+                <div class="row">
+                    <div class="col s4">
+                        <div class="card small">
+                            <div class="card-image">
+                                <img  src="images/background1.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Usuarios<i class="material-icons right">add</i></span>
+                                <p class="waves-effect waves-green"><a href="Controlador?opc=2">Ver más<i class="material-icons right">account_circle</i></a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/background1.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Reservaciones</span>
+                                <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%    } else {%>
             <div class="container">
                 <div row>
                     <h5 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h5>
@@ -125,81 +158,47 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <%    } else  if (c == null && t != null){%>
-        <div class="container">
-            <div row>
-                <h3 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h3>
-                <h5><%=c.toString()%></h5>
-                <h5><%=t.toString()%></h5>
-            </div>
-            <div class="divider"></div>
-            <div class="row">
-                <div class="col s4">
-                    <div class="card small">
-                        <div class="card-image">
-                            <img  src="images/background1.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">Usuarios<i class="material-icons right">add</i></span>
-                            <p class="waves-effect waves-green"><a href="Controlador?opc=2">Ver más<i class="material-icons right">account_circle</i></a></p>
-                        </div>
+
+            <%}%>
+        </main>
+
+        <footer class="page-footer orange darken-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Desarrollo</h5>
+                        <p class="grey-text text-lighten-4">Manuel Alejandro Quevedo Cumpa, estudiante de la carrera de Ing. de Sistemas en la Universidad Nacional Pedro Ruiz Gallo de la ciudad de Lambayeque, Lambayeque - Perú.</p>
+                        <strong>Correo: manuel.alejandro.qc@gmail.com</strong>
+
+                    </div>
+                    <div class="col l3 s12">
+                        <h5 class="white-text">Contacto</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">Ubicacion</a></li>
+                            <li><a class="white-text" href="#!">Telefonos</a></li>
+                            <li><a class="white-text" href="#!">Correo Institucional</a></li>
+                        </ul>
+                    </div>
+                    <div class="col l3 s12">
+                        <h5 class="white-text">Connect</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">Link 1</a></li>
+                            <li><a class="white-text" href="#!">Link 2</a></li>
+                            <li><a class="white-text" href="#!">Link 3</a></li>
+                            <li><a class="white-text" href="#!">Link 4</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col s4">
-                    <div class="card small">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="images/background1.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">Reservaciones</span>
-                            <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
-                        </div>
-                    </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
                 </div>
-            </div>
-        </div>
-    </div>
-    <%}%>
-</main>
-
-<footer class="page-footer orange darken-3">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Desarrollo</h5>
-                <p class="grey-text text-lighten-4">Manuel Alejandro Quevedo Cumpa, estudiante de la carrera de Ing. de Sistemas en la Universidad Nacional Pedro Ruiz Gallo de la ciudad de Lambayeque, Lambayeque - Perú.</p>
-                <strong>Correo: manuel.alejandro.qc@gmail.com</strong>
-
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Contacto</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Ubicacion</a></li>
-                    <li><a class="white-text" href="#!">Telefonos</a></li>
-                    <li><a class="white-text" href="#!">Correo Institucional</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Connect</h5>
-                <ul>
-                    <li><a class="white-text" href="#!">Link 1</a></li>
-                    <li><a class="white-text" href="#!">Link 2</a></li>
-                    <li><a class="white-text" href="#!">Link 3</a></li>
-                    <li><a class="white-text" href="#!">Link 4</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            Powered by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-        </div>
-    </div> 
-</footer>
-<!--        Scripts             -->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script> 
-</body>
+            </div> 
+        </footer>
+        <!--        Scripts             -->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script> 
+    </body>
 </html>

@@ -41,7 +41,7 @@ public class Model_Usuario {
         String sql = "SELECT * FROM `usuario` WHERE username=? AND"
                 + " password=?";
         Object[] os = {username,password};
-        rs = this.cado.Recuperar(sql);
+        rs = this.cado.Recuperar(sql,os);
         return list(rs);
     }
     public List<Usuario> list(ResultSet rs){
@@ -63,12 +63,12 @@ public class Model_Usuario {
         return this.cado.Ejecutar(sql);
     }
     
-//    public static void main(String[] args) {
-//        Object[]parametros={"admin","admin"};
-//        Model_Usuario mu = new Model_Usuario();
-//        
-//        List<Usuario> usu = mu.listar(parametros);
-//        System.out.println(usu.get(0).toString());
-//        
-//    }
+    public static void main(String[] args) {
+        String usu="admin";
+        String contraseña="admin";
+        Model_Usuario mu = new Model_Usuario();
+        List<Usuario>list = mu.login(usu, contraseña);
+        System.out.println(list.get(0).toString());
+        
+    }
 }

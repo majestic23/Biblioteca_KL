@@ -43,7 +43,11 @@ public class Model_Cliente {
         }
         return list(rs);
     }
-    
+    public List listarUsu(Object[] parametros) {
+        String sql = "SELECT * FROM cliente WHERE usuario_username=?";
+        ResultSet rs = cado.Recuperar(sql, parametros);
+        return list(rs);
+    }
     public List<Cliente> list(ResultSet rs){
         List<Cliente> Lista = new ArrayList<>();
         try {
@@ -58,11 +62,7 @@ public class Model_Cliente {
         }
     }
 
-    public List listarUsu(Object[] parametros) {
-        String sql = "SELECT * FROM cliente WHERE usuario_username=?";
-        ResultSet rs = cado.Recuperar(sql,parametros);
-        return list(rs);
-    }
+  
 
     public boolean eliminar(Cliente cliente) {
         String sql = "DELETE FROM cliente WHERE idcliente=" + cliente.getIdcliente();

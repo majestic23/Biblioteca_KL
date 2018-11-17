@@ -14,7 +14,6 @@ import Modelos.Model_Trabajador;
 import Modelos.Model_Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,7 +40,6 @@ public class Controlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CADO cado = new CADO();
             RequestDispatcher rd = null;
             Model_Usuario mu = new Model_Usuario();
             Model_Trabajador mt = new Model_Trabajador();
@@ -103,13 +101,13 @@ public class Controlador extends HttpServlet {
                 case 41:
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
-                    Trabajador t = (request.getSession().getAttribute("trabajador") != null)
-                            ? (Trabajador) request.getSession().getAttribute("trabajador") : null;
-                    Cliente c = (request.getSession().getAttribute("cliente") != null)
-                            ? (Cliente) request.getSession().getAttribute("cliente") : null;
                     if (u == null) {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
+                        Trabajador t = (request.getSession().getAttribute("trabajador") != null)
+                            ? (Trabajador) request.getSession().getAttribute("trabajador") : null;
+                    Cliente c = (request.getSession().getAttribute("cliente") != null)
+                            ? (Cliente) request.getSession().getAttribute("cliente") : null;
                         if (t == null && c != null) {
                             rd = request.getRequestDispatcher("Controlador?opc=111");
                             Object[] paramUsuario = {
@@ -150,11 +148,9 @@ public class Controlador extends HttpServlet {
                     }
                     break;
                 case 9://Logout
-                    u = (request.getSession().getAttribute("usuario") != null)
-                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
-                    if (u==null) {
-                        
-                    }
+                    request.getSession(true);
+                    request.getSession().invalidate();
+                    response.sendRedirect("Controlador?opc=1");
                     break;
                 default:
                     out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");

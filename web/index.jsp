@@ -23,7 +23,7 @@
         <!------------           nav    ------------------->
         <nav class="blue-grey lighten-1" role="navigation">
             <div class="nav-wrapper container">
-                <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
+                <a class="brand-logo center-on-small-only" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
                 <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-small-only">
                     <li><a href="login.jsp">Sign-in</a></li>
@@ -32,8 +32,8 @@
         </nav>
         <!----          SideNav de menus         ------>
         <ul class="sidenav" id="prueba-movil">
-            <li><a href="#">Buscar</a></li>
-            <li><a href="#">Desplegar</a></li>
+            <li><a href="login.jsp">Login</a></li>
+            <li><a href="#">About</a></li>
         </ul>
         </header>
         <main>

@@ -61,7 +61,7 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                    <%if (!t.equals(null)) {%>
+                    <%if (tipo.equals("Trabajador")) {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
                     <%    } else {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
@@ -78,7 +78,7 @@
             </ul>
         </header>
         <main>
-            <%if (!t.equals(null)) {%>
+            <%if (tipo.equals("Trabajador")) {%>
             <div class="container">
                 <div row>
                     <h3 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h3>

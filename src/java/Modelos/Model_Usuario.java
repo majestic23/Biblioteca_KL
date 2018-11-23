@@ -38,10 +38,9 @@ public class Model_Usuario {
     }
     public List login(String username, String password){
         ResultSet rs;
-        String sql = "SELECT * FROM `usuario` WHERE username=? AND"
-                + " password=?";
-        Object[] os = {username,password};
-        rs = this.cado.Recuperar(sql,os);
+        String sql = "SELECT * FROM usuario WHERE (username='"+username+"' OR email='"+username+"') AND"
+                + " password='"+password+"'";
+        rs = this.cado.Recuperar(sql);
         return list(rs);
     }
     public List<Usuario> list(ResultSet rs){
@@ -49,7 +48,7 @@ public class Model_Usuario {
         try {
             rs.beforeFirst();
             while (rs.next()) {
-                Usuario usuario = new Usuario(rs);//No olvides agregar los rs.
+                Usuario usuario = new Usuario(rs);
                 lista.add(usuario);
             }
         } catch (SQLException e) {
@@ -64,11 +63,9 @@ public class Model_Usuario {
     }
     
     public static void main(String[] args) {
-        String usu="admin";
-        String contraseña="admin";
         Model_Usuario mu = new Model_Usuario();
-        List<Usuario>list = mu.login(usu, contraseña);
-        System.out.println(list.get(0).toString());
-        
+        List<Usuario> lista = mu.login("admin","editado");
+        Usuario user = lista.get(0);
+        System.out.println(user.toString());
     }
 }

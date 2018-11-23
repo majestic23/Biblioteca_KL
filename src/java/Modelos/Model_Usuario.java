@@ -29,7 +29,7 @@ public class Model_Usuario {
         String sql = "UPDATE usuario SET username=?,email=?, password=? WHERE username=?";
         return this.cado.Ejecutar(sql, parametros);
     }
-
+    
     public List listar(String username) {
         ResultSet rs;
         String sql = "SELECT * FROM `usuario` WHERE username='"+username+"'";

@@ -3,12 +3,14 @@
     Created on : 11/11/2018, 11:14:53 AM
     Author     : manue
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="Beans.Cliente"%>
 <%@page import="Beans.Trabajador"%>
 <%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
-    Cliente c = new Cliente();
+    Iterator<Cliente> lista = (new ArrayList<Cliente>()).iterator();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
     String tipo = (session.getAttribute("tipo") != null)
@@ -18,9 +20,10 @@
     } else if (tipo.equals("Trabajador")) {
         t = (session.getAttribute("trabajador") != null)
                 ? (Trabajador) session.getAttribute("trabajador") : null;
+        lista = (session.getAttribute("ListaC") != null)
+                ? (Iterator) session.getAttribute("ListaC") : null;
     } else if (tipo.equals("Cliente")) {
-        c = (session.getAttribute("cliente") != null)
-                ? (Cliente) session.getAttribute("cliente") : null;
+        response.sendRedirect("login.jsp");
     }
 
 %>
@@ -93,86 +96,20 @@
             </ul>
         </header>
         <main>
-            <%if (tipo.equals("Trabajador")) {%>
-            <div class="container">
-                <div row>
-                    <h3 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h3>
-                </div>
-                <div class="divider"></div>
+            <div class="container z-depth-3" id="central    ">
                 <div class="row">
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image">
-                                <img  src="images/background1.jpg">
+                    <ul class="collapsible">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">face</i>
                             </div>
-                            <div class="card-content">
-                                <span class="card-title">Usuarios<i class="material-icons right">add</i></span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=5">Ver más<i class="material-icons right">account_circle</i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/background1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Reservaciones</span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
-            <%    } else {%>
-            <div class="container">
-                <div row>
-                    <h5 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h5>
-                </div>
-                <div class="divider"></div>
-                <div class="row">
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image">
-                                <img  src="images/pasillo.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Libros<i class="material-icons right"></i></span>
-                                <p class="waves-effect waves-green">
-                                    <a href="Controlador?opc=2">Buscar<i class="material-icons right">book</i></a><br>
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/background1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Reservaciones</span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Algo más</span>
-                                <p class="waves-effect waves-green"><a href="#!">Otra Opcion<i class="material-icons right">filter_tilt_shift</i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <%}%>
         </main>
-
         <footer class="page-footer orange darken-3">
             <div class="container">
                 <div class="row">

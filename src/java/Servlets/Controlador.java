@@ -105,9 +105,9 @@ public class Controlador extends HttpServlet {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
                         Trabajador t = (request.getSession().getAttribute("trabajador") != null)
-                            ? (Trabajador) request.getSession().getAttribute("trabajador") : null;
-                    Cliente c = (request.getSession().getAttribute("cliente") != null)
-                            ? (Cliente) request.getSession().getAttribute("cliente") : null;
+                                ? (Trabajador) request.getSession().getAttribute("trabajador") : null;
+                        Cliente c = (request.getSession().getAttribute("cliente") != null)
+                                ? (Cliente) request.getSession().getAttribute("cliente") : null;
                         if (t == null && c != null) {
                             rd = request.getRequestDispatcher("Controlador?opc=111");
                             Object[] paramUsuario = {
@@ -145,6 +145,22 @@ public class Controlador extends HttpServlet {
                                 response.sendRedirect("Controlador?opc=99");
                             }
                         }
+                    }
+                    break;
+                case 5://Admin: Lista - Usuarios
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        rd = request.getRequestDispatcher("usuarios.jsp");
+                        List<Cliente> clientes = mc.lista();
+                        if (!clientes.isEmpty()) {
+                            request.setAttribute("ListaC", clientes.iterator());
+                        }else{
+                            request.setAttribute("ListaC", null);
+                        }
+                        rd.forward(request, response);
                     }
                     break;
                 case 9://Logout

@@ -30,25 +30,31 @@ public class Model_Cliente {
                 + "WHERE idcliente=?";
         return this.cado.Ejecutar(sql, parametros);
     }
+    
+    public List lista(){
+        ResultSet rs;
+        String sql;
+        sql = "SELECT * FROM cliente";
+        rs = this.cado.Recuperar(sql);
 
+        return list(rs);
+    }
     public List listar(Object[] Parametros) {
         ResultSet rs;
         String sql;
-        if (Parametros.length == 1) {
-            sql = "SELECT * FROM cliente WHERE idcliente=?";
-            rs = this.cado.Recuperar(sql, Parametros);
-        } else {
-            sql = "SELECT * FROM cliente";
-            rs = this.cado.Recuperar(sql);
-        }
+        sql = "SELECT * FROM cliente WHERE idcliente=?";
+        rs = this.cado.Recuperar(sql, Parametros);
+
         return list(rs);
     }
+
     public List listarUsu(Object[] parametros) {
         String sql = "SELECT * FROM cliente WHERE usuario_username=?";
         ResultSet rs = cado.Recuperar(sql, parametros);
         return list(rs);
     }
-    public List<Cliente> list(ResultSet rs){
+
+    public List<Cliente> list(ResultSet rs) {
         List<Cliente> Lista = new ArrayList<>();
         try {
             rs.beforeFirst();
@@ -61,8 +67,6 @@ public class Model_Cliente {
             return null;
         }
     }
-
-  
 
     public boolean eliminar(Cliente cliente) {
         String sql = "DELETE FROM cliente WHERE idcliente=" + cliente.getIdcliente();

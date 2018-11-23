@@ -44,7 +44,7 @@
             <nav class="blue-grey lighten-2" role="navigation">
                 <div class="nav-wrapper container">
                     <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
-                    <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a href="#" data-target="movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-small-only">
                         <li><a href="Controlador?opc=9">Logout</a></li>
                         <li class="sidenav-trigger left" data-target="slide-out-usuario"><a href="#"><i class="material-icons">view_module</i></a></li>
@@ -72,9 +72,24 @@
                 <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
             </ul>
             <!----          SideNav de menus         ------>
-            <ul class="sidenav" id="prueba-movil">
-                <li><a href="#">Buscar</a></li>
-                <li><a href="#">Desplegar</a></li>
+            <ul class="sidenav" id="movil">
+                <li><div class="user-view">
+                        <div class="background">
+                            <img src="images/user_wallpaper.jpg">
+                        </div>
+                        <a href="#user"><img class="circle" src="images/user_default.png"></a>
+                        <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
+                        <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
+                    </div></li>
+                    <%if (tipo.equals("Trabajador")) {%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
+                    <%    } else {%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
+                    <%}%>
+                <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Accesorios</a></li>
+                <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
             </ul>
         </header>
         <main>
@@ -82,8 +97,6 @@
             <div class="container">
                 <div row>
                     <h3 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h3>
-                    <h5><%=c.toString()%></h5>
-                    <h5><%=t.toString()%></h5>
                 </div>
                 <div class="divider"></div>
                 <div class="row">
@@ -115,8 +128,6 @@
             <div class="container">
                 <div row>
                     <h5 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h5>
-                    <h5><%=c.toString()%></h5>
-                    <h5><%=t.toString()%></h5>
                 </div>
                 <div class="divider"></div>
                 <div class="row">

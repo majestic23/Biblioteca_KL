@@ -46,7 +46,7 @@
             <!------------           nav    ------------------->
             <nav class="blue-grey lighten-2" role="navigation">
                 <div class="nav-wrapper container">
-                    <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
+                    <a class="brand-logo" href="Controlador?opc=111"><i class="material-icons">local_library</i>Biblioteca KL</a>  
                     <a href="#" data-target="movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-small-only">
                         <li><a href="Controlador?opc=9">Logout</a></li>

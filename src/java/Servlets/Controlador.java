@@ -154,11 +154,11 @@ public class Controlador extends HttpServlet {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
                         rd = request.getRequestDispatcher("usuarios.jsp");
-                        List<Cliente> clientes = mc.lista();
-                        if (!clientes.isEmpty()) {
-                            request.setAttribute("ListaC", clientes.iterator());
+                        List<Cliente> listaC = mc.lista();
+                        if (!listaC.isEmpty()) {
+                            request.getSession().setAttribute("ListaC", listaC.iterator());
                         }else{
-                            request.setAttribute("ListaC", null);
+                            request.getSession().setAttribute("ListaC", null);
                         }
                         rd.forward(request, response);
                     }

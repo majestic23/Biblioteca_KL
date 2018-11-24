@@ -72,4 +72,19 @@ public class Model_Cliente {
         String sql = "DELETE FROM cliente WHERE idcliente=" + cliente.getIdcliente();
         return this.cado.Ejecutar(sql);
     }
+    
+    public static void main(String[] args) {
+        Model_Cliente mc = new Model_Cliente();
+        List<Cliente> listaa = mc.lista();
+        if (!listaa.isEmpty()) {
+            System.out.println("Tiene valores!");
+            if (listaa.size()==1) {
+                System.out.println("Solo tiene 1 elemento (Cliente Sheillah)");
+            }else{
+                System.out.println("De donde putas habrá salido el otro elemento xd");
+            }
+        }else{
+            System.out.println("No devuelve nada... Revisar el sql !!");
+        }
+    }
 }

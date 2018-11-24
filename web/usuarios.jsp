@@ -84,11 +84,7 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                    <%if (tipo.equals("Trabajador")) {%>
-                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
-                    <%    } else {%>
-                <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
-                    <%}%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>    
                 <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Accesorios</a></li>
@@ -96,17 +92,22 @@
             </ul>
         </header>
         <main>
-            <div class="container z-depth-3" id="central    ">
-                <div class="row">
+            <div class="container z-depth-3" id="central">
+                <div class="row"><%for (Iterator it = lista; it.hasNext();) {
+                        Cliente cl = (Cliente)it.next();
+                        
+                    
+                    %>
                     <ul class="collapsible">
                         <li>
                             <div class="collapsible-header">
                                 <i class="material-icons">face</i>
+                                <%=cl.getNombre_cliente()%>
                             </div>
                             <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
                         </li>
                     </ul>
-
+<%}%>
                 </div>
             </div>
         </main>

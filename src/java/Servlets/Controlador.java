@@ -8,7 +8,6 @@ package Servlets;
 import Beans.Cliente;
 import Beans.Trabajador;
 import Beans.Usuario;
-import DATOS.CADO;
 import Modelos.Model_Cliente;
 import Modelos.Model_Trabajador;
 import Modelos.Model_Usuario;
@@ -160,6 +159,16 @@ public class Controlador extends HttpServlet {
                         }else{
                             request.getSession().setAttribute("ListaC", null);
                         }
+                        rd.forward(request, response);
+                    }
+                    break;
+                case 55://Admin: Agregar-Usuario.
+                    u = (request.getSession().getAttribute("usuario")!= null) 
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    }else{
+                        rd = request.getRequestDispatcher("addUser.jsp");
                         rd.forward(request, response);
                     }
                     break;

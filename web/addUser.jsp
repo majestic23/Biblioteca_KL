@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home
-    Created on : 11/11/2018, 11:14:53 AM
-    Author     : manue
---%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Beans.Cliente"%>
@@ -94,23 +89,41 @@
         <main>
             <div class="container z-depth-3" id="central">
                 <div class="section">
-                    <h3 class="teal-text center-align">Lista de Socios</h3>
-                    <a href="Controlador?opc=55" class="waves-effect waves-green btn-flat left-align"><i class="material-icons left">add</i>Agregar</a>
+                    <h3 class="center-align teal-text">Nuevo Usuario</h3>
                 </div>
-                <div class="row"><%for (Iterator it = lista; it.hasNext();) {
-                        Cliente cl = (Cliente) it.next();
-                    %>
-                    <ul class="collapsible">
-                        <li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">face</i>
-                                <%=cl.getNombre_cliente()%>
-                            </div>
-                            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                        </li>
-                    </ul>
-                    <%}%>
-                </div>
+                <div class="divider"></div>
+                <form action="Controlador" method="post">
+                    <div class="container section">
+                        <table class="responsive-table">
+
+                            <tr>
+                                <th>Nombre</th>
+                                <td><div class="input-field">
+                                        <input name="txtNombre" type="text">
+                                        <span class="helper-text" data-error="wrong" data-success="right">Apellidos - Nombres</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Correo</th>
+                                <td><div class="input-field"> 
+                                        <input id="email" type="email" class="validate">
+                                        <span class="helper-text" data-error="wrong" data-success="right">ex: pablito@hotmail.com</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>DNI:</th>
+                                <td><input type="text" name="txtDni"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="section center-align">
+                        <input type="hidden" name="opc" value="555"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                        <a href="Controlador?opc=111" class="waves-effect waves-green btn-flat">Cancelar</a>
+                    </div>
+                </form>
             </div>
         </main>
         <footer class="page-footer orange darken-3">
@@ -153,3 +166,4 @@
         <script src="js/init.js"></script> 
     </body>
 </html>
+

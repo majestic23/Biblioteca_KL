@@ -9,6 +9,7 @@ import Beans.Cliente;
 import Beans.Trabajador;
 import Beans.Usuario;
 import Modelos.Model_Cliente;
+import Modelos.Model_Reservacion;
 import Modelos.Model_Trabajador;
 import Modelos.Model_Usuario;
 import java.io.IOException;
@@ -43,6 +44,7 @@ public class Controlador extends HttpServlet {
             Model_Usuario mu = new Model_Usuario();
             Model_Trabajador mt = new Model_Trabajador();
             Model_Cliente mc = new Model_Cliente();
+            Model_Reservacion mr = new Model_Reservacion();
             int opc = Integer.parseInt(request.getParameter("opc"));
             switch (opc) {
 
@@ -65,7 +67,7 @@ public class Controlador extends HttpServlet {
                         response.sendRedirect("Controlador?opc=1");
                     }
                     break;
-                case 111://Login Proceso de retornar valores de usuario -> redirige a Home
+                case 111://Login Proceso de retornar valores de usuario -> redirige a Home.
                     if ((boolean) request.getSession().getAttribute("Validacion")) {
                         Usuario u = (Usuario) request.getSession().getAttribute("usuario");
                         Object[] param = {u.getUsername()};
@@ -88,7 +90,17 @@ public class Controlador extends HttpServlet {
                         response.sendRedirect("login.jsp");
                     }
                     break;
-                case 4:
+                case 3://Registrar Usuario.
+                    String apellido = request.getParameter("txtApellido");
+                    String nombre = request.getParameter("txtNombre");
+                    String cliente = nombre+" "+apellido;
+                    String correo= request.getParameter("txtCorreo");
+                    int dni = Integer.parseInt(request.getParameter("txtDNI"));
+                    
+                    
+                    
+                    break;
+                case 4://Configuracion de la Cuenta para ambos usuarios.
                     Usuario u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {

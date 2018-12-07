@@ -15,7 +15,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-        <!--Importacion de Css Personalizado para el Login---->
+        <!--Importacion de Css Personalizado para el Login-Registro--->
         <link type="text/css" rel="stylesheet" href="css/log-style.css">
         <title>Biblioteca_KL</title>
     </head>
@@ -28,7 +28,7 @@
                 <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-small-only">
                     <li><a href="#">Sign-in</a></li>
-                    <li class="sidenav-trigger left" data-target="slide-out-usuario"><a href="#"><i class="material-icons">view_module</i></a></li>
+                    <li><a href="registrar.jsp">Register</a></li>
                 </ul>
             </div>
         </nav>
@@ -68,17 +68,14 @@
                 </div>
             </div>
         </div>        
-
-
-
         </main>
         <footer class="page-footer orange darken-3">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
-                        <h5 class="white-text">Company Bio</h5>
-                        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
+                        <h5 class="white-text">Desarrollo</h5>
+                        <p class="grey-text text-lighten-4">Manuel Alejandro Quevedo Cumpa, estudiante de la carrera de Ing. de Sistemas en la Universidad Nacional Pedro Ruiz Gallo de la ciudad de Lambayeque, Lambayeque - Perú.</p>
+                        <strong>Correo: manuel.alejandro.qc@gmail.com</strong>
 
                     </div>
                     <div class="col l3 s12">

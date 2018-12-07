@@ -14,12 +14,12 @@ body{
     background: url(../images/background.jpg);
     background-size: 100%;
     color: #fff;
-    
+
 }
- main {
+main {
     flex: 1 0 auto;
     padding-top: 3em;
-  }
+}
 .login{
     margin-top: 25px;
     margin-bottom: 25px;

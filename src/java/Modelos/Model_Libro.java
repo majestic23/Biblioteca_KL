@@ -17,19 +17,21 @@ import java.util.List;
  * @author retr0
  */
 public class Model_Libro {
-    
+
     CADO cado = new CADO();
-    
-    public boolean agregar(Libro libro){
-        String sql ="INSERT INTO libro VALUES(?,?,?)";
+
+    public boolean agregar(Libro libro) {
+        String sql = "INSERT INTO libro VALUES(?,?,?)";
         return this.cado.Ejecutar(sql, libro.getParametros());
     }
-    public boolean modificar(Libro libro){
-         String sql = "UPDATE libro SET nombre_libro = ?, categoria_idcategoria=?"
-                 + " WHERE idlibro=?";
+
+    public boolean modificar(Libro libro) {
+        String sql = "UPDATE libro SET nombre_libro = ?, categoria_idcategoria=?"
+                + " WHERE idlibro=?";
         return this.cado.Ejecutar(sql, libro.getModificar());
     }
-     public List listar(Object[] Parametros) {
+
+    public List listar(Object[] Parametros) {
         ResultSet rs;
         String sql;
         if (Parametros.length == 1) {
@@ -41,8 +43,9 @@ public class Model_Libro {
         }
         return list(rs);
     }
-     public List<Libro> list(ResultSet rs){
-         List<Libro> Lista = new ArrayList<>();
+
+    public List<Libro> list(ResultSet rs) {
+        List<Libro> Lista = new ArrayList<>();
         try {
             rs.beforeFirst();
             while (rs.next()) {
@@ -53,8 +56,9 @@ public class Model_Libro {
         } catch (SQLException e) {
             return null;
         }
-     }
-      public boolean eliminar(Libro libro) {
+    }
+
+    public boolean eliminar(Libro libro) {
         String sql = "DELETE FROM libro WHERE idLibro=" + libro.getIdlibro();
         return this.cado.Ejecutar(sql);
     }

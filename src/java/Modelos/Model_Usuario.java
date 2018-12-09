@@ -20,9 +20,9 @@ public class Model_Usuario {
 
     CADO cado = new CADO();
 
-    public boolean agregar(Usuario usuario) {
-        String sql = "INSERT INTO usuario VALUES(?,?,?)";
-        return this.cado.Ejecutar(sql, usuario.getParametros());
+    public boolean agregar(String username, String correo) {
+        String sql = "INSERT INTO usuario VALUES("+username+","+correo+",biblioteca)";
+        return this.cado.Ejecutar(sql);
     }
 
     public boolean modificar(Object[] parametros) {

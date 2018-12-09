@@ -20,9 +20,9 @@ public class Model_Cliente {
 
     CADO cado = new CADO();
 
-    public boolean agregar(Cliente cliente) {
-        String sql = "INSERT INTO cliente VALUES (?,?,?)";
-        return this.cado.Ejecutar(sql, cliente.getParametros());
+    public boolean agregar(String dni, String nombre, String username) {
+        String sql = "INSERT INTO cliente VALUES ("+dni+","+nombre+","+username+")";
+        return this.cado.Ejecutar(sql);
     }
 
     public boolean modificar(Object[] parametros) {

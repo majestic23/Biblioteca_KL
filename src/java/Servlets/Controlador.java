@@ -91,17 +91,26 @@ public class Controlador extends HttpServlet {
                     }
                     break;
                 case 3://Registrar Usuario.
-                    String apellido = request.getParameter("txtApellido");
-                    String nombre = request.getParameter("txtNombre");
-                    String cliente = nombre+" "+apellido;
-                    String correo= request.getParameter("txtCorreo");
-                    int dni = Integer.parseInt(request.getParameter("txtDNI"));
-                    
-                    
-                    
+                    Usuario u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        String nombre = request.getParameter("txtNombre");
+                        String correo = request.getParameter("txtCorreo");
+                        String dni = request.getParameter("txtDNI");
+                        try {
+                            rd = request.getRequestDispatcher("usuarios.jsp");
+                            mu.agregar(dni, correo);
+                            mc.agregar(dni, nombre, dni);
+                            rd.forward(request, response);
+                        } catch (Exception e) {
+                            response.sendRedirect("Controlador?opc=9999");
+                        }
+                    }
                     break;
                 case 4://Configuracion de la Cuenta para ambos usuarios.
-                    Usuario u = (request.getSession().getAttribute("usuario") != null)
+                    u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {
                         response.sendRedirect("Controlador?opc=1");
@@ -168,18 +177,18 @@ public class Controlador extends HttpServlet {
                         List<Cliente> listaC = mc.lista();
                         if (!listaC.isEmpty()) {
                             request.getSession().setAttribute("ListaC", listaC.iterator());
-                        }else{
+                        } else {
                             request.getSession().setAttribute("ListaC", null);
                         }
                         rd.forward(request, response);
                     }
                     break;
                 case 55://Admin: Agregar-Usuario.
-                    u = (request.getSession().getAttribute("usuario")!= null) 
+                    u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {
                         response.sendRedirect("Controlador?opc=1");
-                    }else{
+                    } else {
                         rd = request.getRequestDispatcher("addUser.jsp");
                         rd.forward(request, response);
                     }

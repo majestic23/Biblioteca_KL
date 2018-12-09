@@ -28,7 +28,6 @@
                 <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-small-only">
                     <li><a href="#">Sign-in</a></li>
-                    <li><a href="registrar.jsp">Register</a></li>
                 </ul>
             </div>
         </nav>

@@ -83,9 +83,7 @@ public class Test {
         usuarios.add(new Usuario("shei24", "itsnotmat@gmail.com", "123456"));
         usuarios.add(new Usuario("monica24", "monica7324@hotmail.com", "123456"));
         Model_Usuario mu = new Model_Usuario();
-        usuarios.forEach((usuario) -> {
-            System.out.println(mu.agregar(usuario));
-        });
+        
     }
 
     public void usuarioModificar() {//Test para el Modelo_Usuario::Modificar():
@@ -168,9 +166,9 @@ public class Test {
         List<Cliente> clientes = new ArrayList<>();
         clientes.add(new Cliente(r.getInt(), "Cliente2 - Mija", "mija22"));
         Model_Cliente mc = new Model_Cliente();
-        clientes.forEach((cliente) -> {
-            System.out.println(mc.agregar(cliente));
-        });
+//        clientes.forEach((cliente) -> {
+//            System.out.println(mc.agregar(cliente));
+//        });
     }
 
     public void clienteModificar() {//Test para el Modelo_Cliente::Modificar():

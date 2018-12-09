@@ -107,7 +107,7 @@
                             <tr>
                                 <th>Correo</th>
                                 <td><div class="input-field"> 
-                                        <input id="email" type="email" class="validate">
+                                        <input id="email" type="email" name="txtCorreo" class="validate">
                                         <span class="helper-text" data-error="wrong" data-success="right">ex: pablito@hotmail.com</span>
                                     </div>
                                 </td>

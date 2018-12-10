@@ -3,14 +3,14 @@
     Created on : 11/11/2018, 11:14:53 AM
     Author     : manue
 --%>
+<%@page import="Beans.Usuario"%>
+<%@page import="Beans.Libro"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="Beans.Cliente"%>
 <%@page import="Beans.Trabajador"%>
-<%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
-    Iterator<Cliente> lista = (new ArrayList<Cliente>()).iterator();
+    Iterator<Libro> lista = (new ArrayList<Libro>()).iterator();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
     String tipo = (session.getAttribute("tipo") != null)
@@ -20,8 +20,8 @@
     } else if (tipo.equals("Trabajador")) {
         t = (session.getAttribute("trabajador") != null)
                 ? (Trabajador) session.getAttribute("trabajador") : null;
-        lista = (session.getAttribute("ListaC") != null)
-                ? (Iterator) session.getAttribute("ListaC") : null;
+        lista = (session.getAttribute("ListaL") != null)
+                ? (Iterator) session.getAttribute("ListaL") : null;
     } else if (tipo.equals("Cliente")) {
         response.sendRedirect("login.jsp");
     }
@@ -98,19 +98,19 @@
                     <a href="Controlador?opc=55" class="waves-effect waves-green btn-flat left-align"><i class="material-icons left">add</i>Agregar</a>
                 </div>
                 <div class="row"><%for (Iterator it = lista; it.hasNext();) {
-                        Cliente cl = (Cliente) it.next();
+                        Libro l = (Libro) it.next();
                     %>
                     <ul class="collapsible popout">
                         <li>
                             <div class="collapsible-header">
-                                <i class="material-icons">face</i>
-                                <%=cl.getNombre_cliente()%>
+                                <i class="material-icons">bookmark</i>
+                                <%=l.getNombre_libro()%>
                             </div>
                             <div class="collapsible-body">
                                 <span>
-                                    <p><b>Nombre: </b><%=cl.getNombre_cliente()%></p>
-                                    <p><b>Codigo: </b><%=cl.getIdcliente()%>; <b>Usuario: </b><%=cl.getUsuario_idusuario()%><p>
-                                        <br><a href="controlador?opc=99&codigo=<%=cl.getIdcliente()%>">Ver más</a>
+                                    <p><b>Categoria: </b><%=l.getCategoria_idcategoria()%></p>
+                                    <p><b>Codigo: </b><%=l.getIdlibro()%><p>
+                                        <br><a href="controlador?opc=99&codigo=<%=l.getIdlibro()%>">Ver más</a>
                                 </span>
                             </div>
                         </li>

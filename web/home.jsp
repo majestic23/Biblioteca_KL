@@ -122,6 +122,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col s4">
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/background1.jpg">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Almacen</span>
+                                <p class="waves-effect waves-green"><a href="Controlador?opc=6">Libros<i class="material-icons right">book</i></a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <%    } else {%>

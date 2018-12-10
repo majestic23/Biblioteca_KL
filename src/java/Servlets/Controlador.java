@@ -196,6 +196,9 @@ public class Controlador extends HttpServlet {
                         rd.forward(request, response);
                     }
                     break;
+                case 6://Admin: Almacen.
+                    
+                    break;
                 case 9://Logout
                     request.getSession(true);
                     request.getSession().invalidate();

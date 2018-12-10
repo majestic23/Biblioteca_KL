@@ -30,19 +30,15 @@ public class Model_Categoria {
         return this.cado.Ejecutar(sql, categoria.getModificar());
     }
 
-    public List listar(Object[] parametros) {
+    public List listar() {
         ResultSet rs;
         String sql;
-        if (parametros.length == 1) {
-            sql = "SELECT * FROM categoria WHERE idcategoria=?";
-            rs = this.cado.Recuperar(sql, parametros);
-        } else {
-            sql = "SELECT * FROM categoria";
-            rs = this.cado.Recuperar(sql);
-        }
+        sql = "SELECT * FROM categoria";
+        rs = this.cado.Recuperar(sql);
         return list(rs);
     }
-    public List<Categoria> list(ResultSet rs){
+
+    public List<Categoria> list(ResultSet rs) {
         List<Categoria> lista = new ArrayList<>();
         try {
             rs.beforeFirst();
@@ -55,11 +51,10 @@ public class Model_Categoria {
             return null;
         }
     }
-    public boolean eleminiar(Categoria categoria){
-        String sql = "DELETE FROM categoria WHERE idcategoria="+categoria.getIdcategoria();
+
+    public boolean eleminiar(Categoria categoria) {
+        String sql = "DELETE FROM categoria WHERE idcategoria=" + categoria.getIdcategoria();
         return this.cado.Ejecutar(sql);
     }
-    
-    
 
 }

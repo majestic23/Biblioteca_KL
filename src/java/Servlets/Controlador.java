@@ -5,11 +5,13 @@
  */
 package Servlets;
 
+import Beans.Categoria;
 import Beans.Cliente;
 import Beans.Libro;
 import Beans.Reservacion;
 import Beans.Trabajador;
 import Beans.Usuario;
+import Modelos.Model_Categoria;
 import Modelos.Model_Cliente;
 import Modelos.Model_Libro;
 import Modelos.Model_Reservacion;
@@ -46,6 +48,7 @@ public class Controlador extends HttpServlet {
             RequestDispatcher rd = null;
             Model_Usuario mu = new Model_Usuario();
             Model_Trabajador mt = new Model_Trabajador();
+            Model_Categoria mct = new Model_Categoria();
             Model_Cliente mc = new Model_Cliente();
             Model_Libro ml = new Model_Libro();
             Model_Reservacion mr = new Model_Reservacion();
@@ -230,6 +233,26 @@ public class Controlador extends HttpServlet {
                             request.getSession().setAttribute("ListaR", null);
                         }
                         rd.forward(request, response);
+                    }
+                    break;
+                case 77://Admin: Agregar - addReserv.jsp
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        List<Libro> listaL = ml.listar();
+                        List<Categoria> listaCat = mct.listar();
+                        rd = request.getRequestDispatcher("addReserv.jsp");
+                        if (!(listaL.isEmpty()) && !(listaCat.isEmpty())) {
+                            request.getSession().setAttribute("ListaL", listaL);
+                            request.getSession().setAttribute("ListaCat", listaCat);
+                            rd.forward(request, response);
+                        }else{
+                            request.getSession().setAttribute("ListaL", null);
+                            request.getSession().setAttribute("ListaCat", null);
+                            rd.forward(request, response);
+                        }
                     }
                     break;
                 case 9://Logout

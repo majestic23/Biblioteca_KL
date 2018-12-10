@@ -55,16 +55,16 @@ public class Test {
     }
 
     public void categoriaListar() {//Test para el Modelo_Categoria::Listar():
-        Object[] parametros = {};//Modificar dentro del array (1 parametro = 1 resultado)
-        //(0 parametros = Todos los resultados)
-        Model_Categoria mc = new Model_Categoria();
-        List<Categoria> lista = mc.listar(parametros);
-        System.out.println(lista.isEmpty());
-        if (lista.size() == 1) {
-            System.out.println("ok");
-        } else {
-            System.out.println("Tiene mas de uno");
-        }
+//        Object[] parametros = {};//Modificar dentro del array (1 parametro = 1 resultado)
+//        //(0 parametros = Todos los resultados)
+//        Model_Categoria mc = new Model_Categoria();
+//        List<Categoria> lista = mc.listar(parametros);
+//        System.out.println(lista.isEmpty());
+//        if (lista.size() == 1) {
+//            System.out.println("ok");
+//        } else {
+//            System.out.println("Tiene mas de uno");
+//        }
     }
 
     public void categoriaEliminar() {

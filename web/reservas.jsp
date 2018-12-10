@@ -96,7 +96,7 @@
             <div class="container z-depth-3" id="central">
                 <div class="section">
                     <h3 class="teal-text center-align">Lista de Reservaciones</h3>
-                    <a href="Controlador?opc=55" class="waves-effect waves-green btn-flat left-align"><i class="material-icons left">add</i>Agregar</a>
+                    <a href="Controlador?opc=77" class="waves-effect waves-green btn-flat left-align"><i class="material-icons left">add</i>Agregar</a>
                 </div>
                 <div class="row"><%for (Iterator it = lista; it.hasNext();) {
                         Reservacion rv = (Reservacion) it.next();

@@ -77,13 +77,10 @@ public class Test {
      * Pruebas del Modelo_Usuario.
      */
     public void usuarioAgregar() {//Test para el Modelo_Usuario::Agregar():
-        List<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("maqc23", "manuel.alejandro.qc@gmail.com", "admin"));
-        usuarios.add(new Usuario("mija22", "mijail.22@gmail.com", "123456"));
-        usuarios.add(new Usuario("shei24", "itsnotmat@gmail.com", "123456"));
-        usuarios.add(new Usuario("monica24", "monica7324@hotmail.com", "123456"));
+        String correo = "pnicole@biblioteca.com";
+        String dni = "74256015";
         Model_Usuario mu = new Model_Usuario();
-        
+        System.out.println(mu.agregar(dni, correo));
     }
 
     public void usuarioModificar() {//Test para el Modelo_Usuario::Modificar():
@@ -163,12 +160,11 @@ public class Test {
      * Pruebas del Modelo_Cliente.
      */
     public void clienteAgregar() {//Test para el Modelo_Cliente::Agregar():
-        List<Cliente> clientes = new ArrayList<>();
-        clientes.add(new Cliente(r.getInt(), "Cliente2 - Mija", "mija22"));
+        String nombre = "Pyroska Nicole";
+        String dni = "74256015";
+        int id = Integer.parseInt(dni);
         Model_Cliente mc = new Model_Cliente();
-//        clientes.forEach((cliente) -> {
-//            System.out.println(mc.agregar(cliente));
-//        });
+        System.out.println(mc.agregar(id, nombre, dni));
     }
 
     public void clienteModificar() {//Test para el Modelo_Cliente::Modificar():
@@ -325,16 +321,16 @@ public class Test {
 //        test.reservacionModificar();
 //       test.reservacionListar1();
 //       test.reservacionListar2();
-        Object[] parametros = {"shei24", "123456"};
-        Model_Usuario mu = new Model_Usuario();
-        List<Usuario> lista = mu.login((String) parametros[0], (String) parametros[1]);
-        Usuario clienteee = lista.get(0);
-        System.out.println(clienteee.toString());
-        Object[] parametrosC = {clienteee.getUsername()};
-        Model_Cliente mc = new Model_Cliente();
-        List<Cliente> c = mc.listarUsu(parametrosC);
-        Cliente cliente = c.get(0);
-        System.out.println(cliente.toString());
+//        Object[] parametros = {"shei24", "123456"};
+//        Model_Usuario mu = new Model_Usuario();
+//        List<Usuario> lista = mu.login((String) parametros[0], (String) parametros[1]);
+//        Usuario clienteee = lista.get(0);
+//        System.out.println(clienteee.toString());
+//        Object[] parametrosC = {clienteee.getUsername()};
+//        Model_Cliente mc = new Model_Cliente();
+//        List<Cliente> c = mc.listarUsu(parametrosC);
+//        Cliente cliente = c.get(0);
+//        System.out.println(cliente.toString());
     }
 
 }

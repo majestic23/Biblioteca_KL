@@ -20,9 +20,10 @@ public class Model_Cliente {
 
     CADO cado = new CADO();
 
-    public boolean agregar(String dni, String nombre, String username) {
-        String sql = "INSERT INTO cliente VALUES ("+dni+","+nombre+","+username+")";
-        return this.cado.Ejecutar(sql);
+    public boolean agregar(int dni, String nombre, String username) {
+        Object[] datos = {dni,nombre,username};
+        String sql = "INSERT INTO cliente (`idcliente`, `nombre_cliente`, `usuario_username`) VALUES (?,?,?)";
+        return this.cado.Ejecutar(sql,datos);
     }
 
     public boolean modificar(Object[] parametros) {
@@ -75,16 +76,19 @@ public class Model_Cliente {
     
     public static void main(String[] args) {
         Model_Cliente mc = new Model_Cliente();
-        List<Cliente> listaa = mc.lista();
-        if (!listaa.isEmpty()) {
-            System.out.println("Tiene valores!");
-            if (listaa.size()==1) {
-                System.out.println("Solo tiene 1 elemento (Cliente Sheillah)");
-            }else{
-                System.out.println("De donde putas habrá salido el otro elemento xd");
-            }
-        }else{
-            System.out.println("No devuelve nada... Revisar el sql !!");
-        }
+        String dni = "17171717";
+        Object[] datos = {(String)"17171717", (String)"k@gmail.com"};
+        System.out.println(mc.agregar(Integer.parseInt(dni),"Kety Importa",dni));
+//        List<Cliente> listaa = mc.lista();
+//        if (!listaa.isEmpty()) {
+//            System.out.println("Tiene valores!");
+//            if (listaa.size()==1) {
+//                System.out.println("Solo tiene 1 elemento (Cliente Sheillah)");
+//            }else{
+//                System.out.println("De donde putas habrá salido el otro elemento xd");
+//            }
+//        }else{
+//            System.out.println("No devuelve nada... Revisar el sql !!");
+//        }
     }
 }

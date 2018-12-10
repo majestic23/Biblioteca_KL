@@ -47,7 +47,7 @@ public class Controlador extends HttpServlet {
             Model_Reservacion mr = new Model_Reservacion();
             int opc = Integer.parseInt(request.getParameter("opc"));
             switch (opc) {
-
+                
                 case 1://Default para retornar -> index
                     response.sendRedirect("index.jsp");
                     break;
@@ -85,7 +85,7 @@ public class Controlador extends HttpServlet {
                             request.getSession().setAttribute("cliente", c);
                             rd.forward(request, response);
                         }
-
+                        
                     } else {
                         response.sendRedirect("login.jsp");
                     }
@@ -98,15 +98,18 @@ public class Controlador extends HttpServlet {
                     } else {
                         String nombre = request.getParameter("txtNombre");
                         String correo = request.getParameter("txtCorreo");
-                        String dni = request.getParameter("txtDNI");
-                        try {
-                            rd = request.getRequestDispatcher("usuarios.jsp");
-                            mu.agregar(dni, correo);
-                            mc.agregar(dni, nombre, dni);
-                            rd.forward(request, response);
-                        } catch (Exception e) {
-                            response.sendRedirect("Controlador?opc=9999");
-                        }
+                        String dni = request.getParameter("txtDni");
+                        boolean validar1 = mu.agregar(dni, correo);
+                        if (validar1) {
+                            boolean validar2 = mc.agregar(Integer.parseInt(dni), nombre, dni);
+                            if (validar2) {
+                                response.sendRedirect("Controlador?opc=5");
+                            } else {
+                                response.sendRedirect("Controlador?opc=999");
+                            }
+                        } else {
+                            response.sendRedirect("Controlador?opc=999");
+                        }                        
                     }
                     break;
                 case 4://Configuracion de la Cuenta para ambos usuarios.

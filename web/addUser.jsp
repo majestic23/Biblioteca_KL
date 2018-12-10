@@ -120,7 +120,7 @@
                     </div>
                     <div class="divider"></div>
                     <div class="section center-align">
-                        <input type="hidden" name="opc" value="555"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                        <input type="hidden" name="opc" value="3"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
                         <a href="Controlador?opc=111" class="waves-effect waves-green btn-flat">Cancelar</a>
                     </div>
                 </form>

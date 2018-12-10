@@ -21,8 +21,10 @@ public class Model_Usuario {
     CADO cado = new CADO();
 
     public boolean agregar(String username, String correo) {
-        String sql = "INSERT INTO usuario VALUES("+username+","+correo+",biblioteca)";
-        return this.cado.Ejecutar(sql);
+        String pass = "biblioteca";
+        Object[] datos = {username, correo, pass};
+        String sql = "INSERT INTO `usuario`(`username`, `email`, `password`) VALUES (?,?,?)";
+        return this.cado.Ejecutar(sql,datos);
     }
 
     public boolean modificar(Object[] parametros) {
@@ -64,8 +66,11 @@ public class Model_Usuario {
     
     public static void main(String[] args) {
         Model_Usuario mu = new Model_Usuario();
-        List<Usuario> lista = mu.login("admin","editado");
-        Usuario user = lista.get(0);
-        System.out.println(user.toString());
+        Model_Cliente mc = new Model_Cliente();
+        String nombre = "Perez Pablo";
+        String correo = "pablo@gmail.com";
+        String dni = "80808080";
+        System.out.println(mu.agregar(dni,correo));
+        System.out.println(mc.agregar(Integer.parseInt(dni), nombre, dni));
     }
 }

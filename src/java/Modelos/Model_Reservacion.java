@@ -30,20 +30,14 @@ public class Model_Reservacion {
         return this.cado.Ejecutar(sql, Reservacion.getModificar());
     }
 
-    public List Listar(Object[] Parametros) {
+    public List listar() {
         ResultSet rs;
-        String sql;
-        if (Parametros.length == 1) {
-            sql = "SELECT * FROM reservacion WHERE idreservacion=?";
-            rs = this.cado.Recuperar(sql, Parametros);
-        } else {
-            sql = "SELECT * FROM reservacion";
-            rs = this.cado.Recuperar(sql);
-        }
+        String sql = "SELECT * FROM reservacion";
+        rs = this.cado.Recuperar(sql);
         return list(rs);
     }
 
-    public List<Reservacion> list(ResultSet rs){
+    public List<Reservacion> list(ResultSet rs) {
         List<Reservacion> Lista = new ArrayList<>();
         try {
             rs.beforeFirst();
@@ -56,6 +50,7 @@ public class Model_Reservacion {
             return null;
         }
     }
+
     public List ListarporLibro(Object[] Parametros) {
         ResultSet rs;
         String sql;

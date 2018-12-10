@@ -1,14 +1,10 @@
-<%-- 
-    Document   : home
-    Created on : 11/11/2018, 11:14:53 AM
-    Author     : manue
---%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="Beans.Cliente"%>
 <%@page import="Beans.Trabajador"%>
 <%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
-    Cliente c = new Cliente();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
     String tipo = (session.getAttribute("tipo") != null)
@@ -19,8 +15,7 @@
         t = (session.getAttribute("trabajador") != null)
                 ? (Trabajador) session.getAttribute("trabajador") : null;
     } else if (tipo.equals("Cliente")) {
-        c = (session.getAttribute("cliente") != null)
-                ? (Cliente) session.getAttribute("cliente") : null;
+        response.sendRedirect("login.jsp");
     }
 
 %>
@@ -43,7 +38,7 @@
             <!------------           nav    ------------------->
             <nav class="blue-grey lighten-2" role="navigation">
                 <div class="nav-wrapper container">
-                    <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
+                    <a class="brand-logo" href="Controlador?opc=111"><i class="material-icons">local_library</i>Biblioteca KL</a>  
                     <a href="#" data-target="movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-small-only">
                         <li><a href="Controlador?opc=9">Logout</a></li>
@@ -81,11 +76,7 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                    <%if (tipo.equals("Trabajador")) {%>
-                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
-                    <%    } else {%>
-                <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
-                    <%}%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>    
                 <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Accesorios</a></li>
@@ -93,97 +84,44 @@
             </ul>
         </header>
         <main>
-            <%if (tipo.equals("Trabajador")) {%>
-            <div class="container">
-                <div row>
-                    <h3 class="teal-text center-align">Welcome <%=t.getNombre_trabajador()%></h3>
+            <div class="container z-depth-3" id="central">
+                <div class="section">
+                    <h3 class="center-align teal-text">Nuevo Usuario</h3>
                 </div>
                 <div class="divider"></div>
-                <div class="row">
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image">
-                                <img  src="images/background1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Usuarios<i class="material-icons right">add</i></span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=5">Ver más<i class="material-icons right">account_circle</i></a></p>
-                            </div>
-                        </div>
+                <form action="Controlador" method="post">
+                    <div class="container section">
+                        <table class="responsive-table">
+                            <tr>
+                                <th>Nombre</th>
+                                <td><div class="input-field">
+                                        <input name="txtLibro" type="text">
+                                        <span class="helper-text" data-error="wrong" data-success="right">Apellidos - Nombres</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Correo</th>
+                                <td><div class="input-field"> 
+                                        <input id="email" type="email" name="txtCorreo" class="validate">
+                                        <span class="helper-text" data-error="wrong" data-success="right">ex: pablito@hotmail.com</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>DNI:</th>
+                                <td><input type="text" name="txtDni"></td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/background1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Reservaciones</span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=7">Reservaciones<i class="material-icons right">add</i></a></p>
-                            </div>
-                        </div>
+                    <div class="divider"></div>
+                    <div class="section center-align">
+                        <input type="hidden" name="opc" value="3"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                        <a href="Controlador?opc=111" class="waves-effect waves-green btn-flat">Cancelar</a>
                     </div>
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/background1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Almacen</span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=6">Libros<i class="material-icons right">book</i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
-            <%    } else {%>
-            <div class="container">
-                <div row>
-                    <h5 class="teal-text center-align">Welcome <%=c.getNombre_cliente()%></h5>
-                </div>
-                <div class="divider"></div>
-                <div class="row">
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image">
-                                <img  src="images/pasillo.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Libros<i class="material-icons right"></i></span>
-                                <p class="waves-effect waves-green">
-                                    <a href="Controlador?opc=2">Buscar<i class="material-icons right">book</i></a><br>
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/background1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Reservaciones</span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s4">
-                        <div class="card small">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/1.jpg">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">Algo más</span>
-                                <p class="waves-effect waves-green"><a href="#!">Otra Opcion<i class="material-icons right">filter_tilt_shift</i></a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <%}%>
         </main>
-
         <footer class="page-footer orange darken-3">
             <div class="container">
                 <div class="row">
@@ -224,3 +162,4 @@
         <script src="js/init.js"></script> 
     </body>
 </html>
+

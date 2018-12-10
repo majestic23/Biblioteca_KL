@@ -7,6 +7,7 @@ package Servlets;
 
 import Beans.Cliente;
 import Beans.Libro;
+import Beans.Reservacion;
 import Beans.Trabajador;
 import Beans.Usuario;
 import Modelos.Model_Cliente;
@@ -211,6 +212,22 @@ public class Controlador extends HttpServlet {
                             request.getSession().setAttribute("ListaL", listaL.iterator());
                         } else {
                             request.getSession().setAttribute("ListaC", null);
+                        }
+                        rd.forward(request, response);
+                    }
+                    break;
+                case 7://Admin: Agregar-Reservacion.
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        rd = request.getRequestDispatcher("reservas.jsp");
+                        List<Reservacion> listaR = mr.listar();
+                        if (!listaR.isEmpty()) {
+                            request.getSession().setAttribute("ListaR", listaR.iterator());
+                        } else {
+                            request.getSession().setAttribute("ListaR", null);
                         }
                         rd.forward(request, response);
                     }

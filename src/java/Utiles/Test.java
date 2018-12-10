@@ -272,13 +272,13 @@ public class Test {
     public void reservacionListar1() {//Test para el Modelo_Reservacion::Listar():
         Object[] parametros = {10056};
         Model_Reservacion mr = new Model_Reservacion();
-        List<Reservacion> lista = mr.Listar(parametros);
-        System.out.println(lista.isEmpty());
-        if (lista.size() == 1) {
-            System.out.println("1 elemento en lista");
-        } else {
-            System.out.println("Varios elementos en lista");
-        }
+//        List<Reservacion> lista = mr.Listar(parametros);
+//        System.out.println(lista.isEmpty());
+//        if (lista.size() == 1) {
+//            System.out.println("1 elemento en lista");
+//        } else {
+//            System.out.println("Varios elementos en lista");
+//        }
     }
 
     public void reservacionListar2() {//Test para el Modelo_Reservacion::Listar():

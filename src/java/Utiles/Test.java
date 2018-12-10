@@ -226,15 +226,15 @@ public class Test {
     }
 
     public void libroListar() {//Test para el Modelo_Libro::Listar():
-        Object[] parametros = {10088};
-        Model_Libro ml = new Model_Libro();
-        List<Libro> libros = ml.listar(parametros);
-        System.out.println(libros.isEmpty());
-        if (libros.size() == 1) {
-            System.out.println("1 cliente en lista");
-        } else {
-            System.out.println("Varios clientes en lista");
-        }
+//        Object[] parametros = {10088};
+//        Model_Libro ml = new Model_Libro();
+//        List<Libro> libros = ml.listar(parametros);
+//        System.out.println(libros.isEmpty());
+//        if (libros.size() == 1) {
+//            System.out.println("1 cliente en lista");
+//        } else {
+//            System.out.println("Varios clientes en lista");
+//        }
     }
 
     public void libroEliminar() {//Test para el Modelo_Libro::Eliminar():

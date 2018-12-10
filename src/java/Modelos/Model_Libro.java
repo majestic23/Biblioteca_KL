@@ -31,19 +31,20 @@ public class Model_Libro {
         return this.cado.Ejecutar(sql, libro.getModificar());
     }
 
-    public List listar(Object[] Parametros) {
+    public List listar() {
         ResultSet rs;
         String sql;
-        if (Parametros.length == 1) {
-            sql = "SELECT * FROM libro WHERE idlibro=?";
-            rs = this.cado.Recuperar(sql, Parametros);
-        } else {
-            sql = "SELECT * FROM libro";
-            rs = this.cado.Recuperar(sql);
-        }
+        sql = "SELECT * FROM libro";
+        rs = this.cado.Recuperar(sql);
         return list(rs);
     }
-
+    public List buscar(int idcategoria){
+        ResultSet rs;
+        String sql;
+        sql = "SELECT * FROM libro WHERE categoria_idcategoria="+idcategoria;
+        rs = this.cado.Recuperar(sql);
+        return list(rs);
+    }
     public List<Libro> list(ResultSet rs) {
         List<Libro> Lista = new ArrayList<>();
         try {

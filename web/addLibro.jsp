@@ -1,5 +1,3 @@
-<%@page import="Beans.Categoria"%>
-<%@page import="Beans.Libro"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Beans.Cliente"%>
@@ -7,8 +5,7 @@
 <%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
-    Iterator<Libro> listal = (new ArrayList<Libro>()).iterator();
-    Iterator<Categoria> listac = (new ArrayList<Categoria>()).iterator();
+    Iterator<Cliente> lista = (new ArrayList<Cliente>()).iterator();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
     String tipo = (session.getAttribute("tipo") != null)
@@ -18,10 +15,8 @@
     } else if (tipo.equals("Trabajador")) {
         t = (session.getAttribute("trabajador") != null)
                 ? (Trabajador) session.getAttribute("trabajador") : null;
-        listal = (session.getAttribute("ListaL") != null)
-                ? (Iterator) session.getAttribute("ListaL") : null;
-        listac = (session.getAttribute("ListaCat") != null)
-                ? (Iterator) session.getAttribute("ListaCat") : null;
+        lista = (session.getAttribute("ListaC") != null)
+                ? (Iterator) session.getAttribute("ListaC") : null;
     } else if (tipo.equals("Cliente")) {
         response.sendRedirect("login.jsp");
     }
@@ -94,48 +89,38 @@
         <main>
             <div class="container z-depth-3" id="central">
                 <div class="section">
-                    <h3 class="center-align teal-text">Nueva Reservación</h3>
+                    <h3 class="center-align teal-text">Nuevo Libro</h3>
                 </div>
                 <div class="divider"></div>
                 <form action="Controlador" method="post">
                     <div class="container section">
                         <table class="responsive-table">
+
                             <tr>
-                                <th>Libro:</th>
-                                <td> <div class="input-field col s12">
-                                        <select name="txtLibro">
-                                            <%for (Iterator it = listal; it.hasNext();) {
-                                                    Libro l = (Libro) it.next();
-                                            %>
-                                            <option value="<%=l.getIdlibro()%>"><%=l.getNombre_libro()%></option>
-                                            <%
-                                                }
-                                            %>
-                                        </select>
-                                        <label>Selecciona el Libro</label>
+                                <th>Nombre</th>
+                                <td><div class="input-field">
+                                        <input name="txtNombre" type="text">
+                                        <span class="helper-text" data-error="wrong" data-success="right">Apellidos - Nombres</span>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Fecha - Inicio</th>
-                                <td><input type="date" name="txtFinicio"></td>
+                                <th>Correo</th>
+                                <td><div class="input-field"> 
+                                        <input id="email" type="email" name="txtCorreo" class="validate">
+                                        <span class="helper-text" data-error="wrong" data-success="right">ex: pablito@hotmail.com</span>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
-                                <th>Fecha - Fin</th>
-                                <td><input type="date" name="txtFfin"></td>
-                            </tr>
-                            <tr>
-                                <th>Socio:</th>
-                                <td><div class="input-field col s6">
-                                        <input id="dni" type="text" name="txtDni" class="validate">
-                                        <label for="dni">DNI</label>
-                                    </div></td>
+                                <th>DNI:</th>
+                                <td><input type="text" name="txtDni"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="divider"></div>
                     <div class="section center-align">
-                        <input type="hidden" name="opc" value="777"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                        <input type="hidden" name="opc" value="3"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
                         <a href="Controlador?opc=111" class="waves-effect waves-green btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -179,11 +164,6 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script> 
-        <script>
-            $(document).ready(function () {
-                $('select').formSelect();
-            });
-        </script>
     </body>
 </html>
 

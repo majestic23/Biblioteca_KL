@@ -20,9 +20,9 @@ public class Model_Reservacion {
 
     CADO cado = new CADO();
 
-    public boolean agregar(Reservacion Reservacion) {
+    public boolean agregar(Object[] parametros) {
         String sql = "INSERT INTO reservacion VALUES (?, ?, ?, ?, ?)";
-        return this.cado.Ejecutar(sql, Reservacion.getParametros());
+        return this.cado.Ejecutar(sql,parametros);
     }
 
     public boolean modificar(Reservacion Reservacion) {

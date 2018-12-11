@@ -247,15 +247,8 @@ public class Test {
      * Pruebas del Modelo_Reservacion
      */
     public void reservacionAgregar() {//Test para el Modelo_Reservacion::Agregar():
-        List<Reservacion> reservaciones = new ArrayList<>();
-        reservaciones.add(new Reservacion(r.getInt(), "2018-10-04", "2018-11-04", 10031, 10094));
-        reservaciones.add(new Reservacion(r.getInt(), "2018-11-01", "", 10004, 10094));
-        reservaciones.add(new Reservacion(r.getInt(), "2018-08-04", "2018-08-29", 10018, 10094));
-        reservaciones.add(new Reservacion(r.getInt(), "2018-05-02", "2018-08-30", 10054, 10094));
-        Model_Reservacion mr = new Model_Reservacion();
-        reservaciones.forEach((reservacion) -> {
-            System.out.println(mr.agregar(reservacion));
-        });
+//        int idReservacion = new random().getInt();
+//        Object[] parametros = {};
     }
 
     public void reservacionModificar() {//Test para el Modelo_Reservacion::Modificar():

@@ -17,6 +17,7 @@ import Modelos.Model_Libro;
 import Modelos.Model_Reservacion;
 import Modelos.Model_Trabajador;
 import Modelos.Model_Usuario;
+import Utiles.random;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -52,6 +53,7 @@ public class Controlador extends HttpServlet {
             Model_Cliente mc = new Model_Cliente();
             Model_Libro ml = new Model_Libro();
             Model_Reservacion mr = new Model_Reservacion();
+            random random = new random();
             int opc = Integer.parseInt(request.getParameter("opc"));
             switch (opc) {
                 
@@ -245,12 +247,32 @@ public class Controlador extends HttpServlet {
                         List<Categoria> listaCat = mct.listar();
                         rd = request.getRequestDispatcher("addReserv.jsp");
                         if (!(listaL.isEmpty()) && !(listaCat.isEmpty())) {
-                            request.getSession().setAttribute("ListaL", listaL);
-                            request.getSession().setAttribute("ListaCat", listaCat);
+                            request.getSession().setAttribute("ListaL", listaL.iterator());
+                            request.getSession().setAttribute("ListaCat", listaCat.iterator());
                             rd.forward(request, response);
                         }else{
                             request.getSession().setAttribute("ListaL", null);
                             request.getSession().setAttribute("ListaCat", null);
+                            rd.forward(request, response);
+                        }
+                    }
+                    break;
+                case 777://Admin: Agregar Reservacion.
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        int idReservacion = random.getInt();
+                        String fechaInicio = request.getParameter("txtFinicio");
+                        String fechaFin = request.getParameter("txtFfin");
+                        int idLibro = Integer.parseInt(request.getParameter("txtLibro"));
+                        int idCliente = Integer.parseInt(request.getParameter("txtDni"));
+                        rd = request.getRequestDispatcher("Controlador?opc=7");
+                        Object[] parametros = {idReservacion,fechaInicio,fechaFin,idLibro,idCliente};
+                        if (!mr.agregar(parametros)) {
+                            response.sendRedirect("Controlador?opc=999");
+                        }else{
                             rd.forward(request, response);
                         }
                     }

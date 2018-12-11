@@ -253,7 +253,7 @@ public class Controlador extends HttpServlet {
                         }
                     }
                     break;
-                case 7://Reservaciones
+                case 7://Reservaciones Admin- Users
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {

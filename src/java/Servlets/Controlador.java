@@ -216,7 +216,7 @@ public class Controlador extends HttpServlet {
                         if (!listaL.isEmpty()) {
                             request.getSession().setAttribute("ListaL", listaL.iterator());
                         } else {
-                            request.getSession().setAttribute("ListaC", null);
+                            request.getSession().setAttribute("ListaL", null);
                         }
                         rd.forward(request, response);
                     }
@@ -234,7 +234,7 @@ public class Controlador extends HttpServlet {
                             rd.forward(request, response);
                         }
                     }
-                    break;
+                    break; 
                 case 666:
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;

@@ -3,6 +3,7 @@
     Created on : 11/11/2018, 11:14:53 AM
     Author     : manue
 --%>
+<%@page import="Beans.Cliente"%>
 <%@page import="Beans.Usuario"%>
 <%@page import="Beans.Libro"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,6 +11,7 @@
 <%@page import="Beans.Trabajador"%>
 <%
     Trabajador t = new Trabajador();
+    Cliente c = new Cliente();
     Iterator<Libro> lista = (new ArrayList<Libro>()).iterator();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
@@ -23,7 +25,10 @@
         lista = (session.getAttribute("ListaL") != null)
                 ? (Iterator) session.getAttribute("ListaL") : null;
     } else if (tipo.equals("Cliente")) {
-        response.sendRedirect("login.jsp");
+        c = (session.getAttribute("cliente") != null)
+                ? (Cliente) session.getAttribute("cliente") : null;
+        lista = (session.getAttribute("ListaL") != null)
+                ? (Iterator) session.getAttribute("ListaL") : null;
     }
 
 %>
@@ -65,7 +70,7 @@
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
                     <%if (tipo.equals("Trabajador")) {%>
-                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
+                <li><a href="Controlador?opc=6"><i class="material-icons">cloud</i>Almacen</a></li>
                     <%    } else {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
                     <%}%>
@@ -84,14 +89,20 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>    
+                    <%if (tipo.equals("Trabajador")) {%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
+                    <%    } else {%>
+                <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
+                    <%}%>  
                 <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Accesorios</a></li>
                 <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
             </ul>
         </header>
+
         <main>
+            <%if (tipo.equals("Trabajador")) {%>
             <div class="container z-depth-3" id="central">
                 <div class="section">
                     <h3 class="teal-text center-align">Almacén de Libros</h3>
@@ -99,7 +110,7 @@
                 </div>
                 <div class="row"><%for (Iterator it = lista; it.hasNext();) {
                         Libro l = (Libro) it.next();
-                    %>
+                    %>   
                     <ul class="collapsible popout">
                         <li>
                             <div class="collapsible-header">
@@ -118,7 +129,38 @@
                     <%}%>
                 </div>
             </div>
+
+            <%} else {%>
+
+            <div class="container z-depth-3" id="central">
+                <div class="section">
+                    <h3 class="teal-text center-align">Almacén de Libros</h3>
+                    <a href="#!" class="waves-effect waves-green btn-flat left-align"><i class="material-icons left">search</i>Buscar</a>
+                </div>
+                <div class="row"><%for (Iterator it = lista; it.hasNext();) {
+                        Libro l = (Libro) it.next();
+                    %>   
+                    <ul class="collapsible popout">
+                        <li>
+                            <div class="collapsible-header">
+                                <i class="material-icons">bookmark</i>
+                                <%=l.getNombre_libro()%>
+                            </div>
+                            <div class="collapsible-body">
+                                <span>
+                                    <p><b>Categoria: </b><%=l.getCategoria_idcategoria()%></p>
+                                    <p><b>Codigo: </b><%=l.getIdlibro()%><p>
+                                        <br><a href="controlador?opc=99&codigo=<%=l.getIdlibro()%>">Ver más</a>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <%}%>
+                </div>
+            </div>
+            <%}%>
         </main>
+
         <footer class="page-footer orange darken-3">
             <div class="container">
                 <div class="row">

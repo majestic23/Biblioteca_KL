@@ -62,7 +62,7 @@
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
                     <%if (tipo.equals("Trabajador")) {%>
-                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
+                <li><a href="Controlador?opc=6"><i class="material-icons">cloud</i>Almacen</a></li>
                     <%    } else {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
                     <%}%>
@@ -150,7 +150,7 @@
                             <div class="card-content">
                                 <span class="card-title">Libros<i class="material-icons right"></i></span>
                                 <p class="waves-effect waves-green">
-                                    <a href="Controlador?opc=2">Buscar<i class="material-icons right">book</i></a><br>
+                                    <a href="Controlador?opc=6">Explorar<i class="material-icons right">book</i></a><br>
                                 </p>
 
                             </div>

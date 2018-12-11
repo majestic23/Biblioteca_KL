@@ -11,6 +11,7 @@
 <%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
+    Cliente c = new Cliente();
     Iterator<Reservacion> lista = (new ArrayList<Reservacion>()).iterator();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
@@ -24,7 +25,10 @@
         lista = (session.getAttribute("ListaR") != null)
                 ? (Iterator) session.getAttribute("ListaR") : null;
     } else if (tipo.equals("Cliente")) {
-        response.sendRedirect("login.jsp");
+        c = (session.getAttribute("cliente") != null)
+                ? (Cliente) session.getAttribute("cliente") : null;
+        lista = (session.getAttribute("ListaR") != null)
+                ? (Iterator) session.getAttribute("ListaR") : null;
     }
 
 %>

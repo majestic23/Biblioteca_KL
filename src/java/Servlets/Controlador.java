@@ -56,7 +56,7 @@ public class Controlador extends HttpServlet {
             random random = new random();
             int opc = Integer.parseInt(request.getParameter("opc"));
             switch (opc) {
-                
+
                 case 1://Default para retornar -> index
                     response.sendRedirect("index.jsp");
                     break;
@@ -94,7 +94,7 @@ public class Controlador extends HttpServlet {
                             request.getSession().setAttribute("cliente", c);
                             rd.forward(request, response);
                         }
-                        
+
                     } else {
                         response.sendRedirect("login.jsp");
                     }
@@ -118,7 +118,7 @@ public class Controlador extends HttpServlet {
                             }
                         } else {
                             response.sendRedirect("Controlador?opc=999");
-                        }                        
+                        }
                     }
                     break;
                 case 4://Configuracion de la Cuenta para ambos usuarios.
@@ -234,7 +234,7 @@ public class Controlador extends HttpServlet {
                             rd.forward(request, response);
                         }
                     }
-                    break; 
+                    break;
                 case 666:
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
@@ -244,29 +244,44 @@ public class Controlador extends HttpServlet {
                         int idLibro = random.getInt();
                         String nombre_Libro = request.getParameter("txtNombre");
                         int idCategoria = Integer.parseInt(request.getParameter("txtCategoria"));
-                        Object[] parametros ={idLibro,nombre_Libro,idCategoria};
+                        Object[] parametros = {idLibro, nombre_Libro, idCategoria};
                         rd = request.getRequestDispatcher("Controlador?opc=6");
                         if (ml.agregar(parametros)) {
                             rd.forward(request, response);
-                        }else{
+                        } else {
                             response.sendRedirect("Controlador?opc=99");
                         }
                     }
                     break;
-                case 7://Admin: Agregar-Reservacion.
+                case 7://Reservaciones
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
+                        Trabajador t = (request.getSession().getAttribute("trabajador") != null)
+                                ? (Trabajador) request.getSession().getAttribute("trabajador") : null;
+                        Cliente c = (request.getSession().getAttribute("cliente") != null)
+                                ? (Cliente) request.getSession().getAttribute("cliente") : null;
                         rd = request.getRequestDispatcher("reservas.jsp");
-                        List<Reservacion> listaR = mr.listar();
-                        if (!listaR.isEmpty()) {
-                            request.getSession().setAttribute("ListaR", listaR.iterator());
-                        } else {
-                            request.getSession().setAttribute("ListaR", null);
+                        if (t == null && c != null) {
+                            int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+                            List<Reservacion> listaR = mr.listarU(idCliente);
+                            if (!listaR.isEmpty()) {
+                                request.getSession().setAttribute("ListaR", listaR.iterator());
+                            } else {
+                                request.getSession().setAttribute("ListaR", null);
+                            }
+                            rd.forward(request, response);
+                        } else if (c == null && t != null) {
+                            List<Reservacion> listaR = mr.listar();
+                            if (!listaR.isEmpty()) {
+                                request.getSession().setAttribute("ListaR", listaR.iterator());
+                            } else {
+                                request.getSession().setAttribute("ListaR", null);
+                            }
+                            rd.forward(request, response);
                         }
-                        rd.forward(request, response);
                     }
                     break;
                 case 77://Admin: Agregar - addReserv.jsp
@@ -282,7 +297,7 @@ public class Controlador extends HttpServlet {
                             request.getSession().setAttribute("ListaL", listaL.iterator());
                             request.getSession().setAttribute("ListaCat", listaCat.iterator());
                             rd.forward(request, response);
-                        }else{
+                        } else {
                             request.getSession().setAttribute("ListaL", null);
                             request.getSession().setAttribute("ListaCat", null);
                             rd.forward(request, response);
@@ -301,10 +316,10 @@ public class Controlador extends HttpServlet {
                         int idLibro = Integer.parseInt(request.getParameter("txtLibro"));
                         int idCliente = Integer.parseInt(request.getParameter("txtDni"));
                         rd = request.getRequestDispatcher("Controlador?opc=7");
-                        Object[] parametros = {idReservacion,fechaInicio,fechaFin,idLibro,idCliente};
+                        Object[] parametros = {idReservacion, fechaInicio, fechaFin, idLibro, idCliente};
                         if (!mr.agregar(parametros)) {
                             response.sendRedirect("Controlador?opc=999");
-                        }else{
+                        } else {
                             rd.forward(request, response);
                         }
                     }

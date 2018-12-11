@@ -22,7 +22,7 @@ public class Model_Reservacion {
 
     public boolean agregar(Object[] parametros) {
         String sql = "INSERT INTO reservacion VALUES (?, ?, ?, ?, ?)";
-        return this.cado.Ejecutar(sql,parametros);
+        return this.cado.Ejecutar(sql, parametros);
     }
 
     public boolean modificar(Reservacion Reservacion) {
@@ -33,6 +33,13 @@ public class Model_Reservacion {
     public List listar() {
         ResultSet rs;
         String sql = "SELECT * FROM reservacion";
+        rs = this.cado.Recuperar(sql);
+        return list(rs);
+    }
+
+    public List listarU(int idCliente) {
+        ResultSet rs;
+        String sql = "SELECT * FROM reservacion WHERE cliente_idcliente="+idCliente;
         rs = this.cado.Recuperar(sql);
         return list(rs);
     }

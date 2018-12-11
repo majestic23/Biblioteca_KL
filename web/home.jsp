@@ -163,7 +163,7 @@
                             </div>
                             <div class="card-content">
                                 <span class="card-title">Reservaciones</span>
-                                <p class="waves-effect waves-green"><a href="Controlador?opc=2">Agregar Reservacion<i class="material-icons right">add</i></a></p>
+                                <p class="waves-effect waves-green"><a href="Controlador?opc=7&idCliente=<%=c.getIdcliente()%>">Mis Reservaciones<i class="material-icons right">shopping_basket</i></a></p>
                             </div>
                         </div>
                     </div>

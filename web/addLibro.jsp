@@ -1,3 +1,4 @@
+<%@page import="Beans.Categoria"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Beans.Cliente"%>
@@ -5,7 +6,7 @@
 <%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
-    Iterator<Cliente> lista = (new ArrayList<Cliente>()).iterator();
+    Iterator<Categoria> listac = (new ArrayList<Categoria>()).iterator();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
     String tipo = (session.getAttribute("tipo") != null)
@@ -15,8 +16,8 @@
     } else if (tipo.equals("Trabajador")) {
         t = (session.getAttribute("trabajador") != null)
                 ? (Trabajador) session.getAttribute("trabajador") : null;
-        lista = (session.getAttribute("ListaC") != null)
-                ? (Iterator) session.getAttribute("ListaC") : null;
+        listac = (session.getAttribute("ListaCat") != null)
+                ? (Iterator) session.getAttribute("ListaCat") : null;
     } else if (tipo.equals("Cliente")) {
         response.sendRedirect("login.jsp");
     }
@@ -95,32 +96,34 @@
                 <form action="Controlador" method="post">
                     <div class="container section">
                         <table class="responsive-table">
-
                             <tr>
-                                <th>Nombre</th>
-                                <td><div class="input-field">
-                                        <input name="txtNombre" type="text">
-                                        <span class="helper-text" data-error="wrong" data-success="right">Apellidos - Nombres</span>
+                                <th>Categoria:</th>
+                                <td> <div class="input-field col s12">
+                                        <select name="txtCategoria">
+                                            <%for (Iterator it = listac; it.hasNext();) {
+                                                    Categoria c = (Categoria) it.next();
+                                            %>
+                                            <option value="<%=c.getIdcategoria()%>"><%=c.getNombre_categoria()%></option>
+                                            <%
+                                                }
+                                            %>
+                                        </select>
+                                        <label>Seleccione Categoria</label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Correo</th>
-                                <td><div class="input-field"> 
-                                        <input id="email" type="email" name="txtCorreo" class="validate">
-                                        <span class="helper-text" data-error="wrong" data-success="right">ex: pablito@hotmail.com</span>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>DNI:</th>
-                                <td><input type="text" name="txtDni"></td>
+                                <th>Nombre del Libro:</th>
+                                <td><div class="input-field col s6">
+                                        <input id="dni" type="text" name="txtNombre" class="validate">
+                                        <label for="dni">ex: "Cien años de Soledad"</label>
+                                    </div></td>
                             </tr>
                         </table>
                     </div>
                     <div class="divider"></div>
                     <div class="section center-align">
-                        <input type="hidden" name="opc" value="3"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                        <input type="hidden" name="opc" value="666"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
                         <a href="Controlador?opc=111" class="waves-effect waves-green btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -164,6 +167,11 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script> 
+        <script>
+            $(document).ready(function () {
+                $('select').formSelect();
+            });
+        </script>
     </body>
 </html>
 

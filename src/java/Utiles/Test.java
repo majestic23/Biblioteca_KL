@@ -207,16 +207,16 @@ public class Test {
      * Pruebas del Modelo_Libro.
      */
     public void libroAgregar() {//Test para el Modelo_Libro::Agregar():
-        List<Libro> libros = new ArrayList<>();
-        libros.add(new Libro(r.getInt(), "Libro1", 1));
-        libros.add(new Libro(r.getInt(), "Libro2", 1));
-        libros.add(new Libro(r.getInt(), "Libro3", 1));
-        libros.add(new Libro(r.getInt(), "Libro4", 1));
-        libros.add(new Libro(r.getInt(), "Libro5", 1));
-        Model_Libro ml = new Model_Libro();
-        libros.forEach((libro) -> {
-            System.out.println(ml.agregar(libro));
-        });
+//        List<Libro> libros = new ArrayList<>();
+//        libros.add(new Libro(r.getInt(), "Libro1", 1));
+//        libros.add(new Libro(r.getInt(), "Libro2", 1));
+//        libros.add(new Libro(r.getInt(), "Libro3", 1));
+//        libros.add(new Libro(r.getInt(), "Libro4", 1));
+//        libros.add(new Libro(r.getInt(), "Libro5", 1));
+//        Model_Libro ml = new Model_Libro();
+//        libros.forEach((libro) -> {
+////            System.out.println(ml.agregar(libro));
+//        });
     }
 
     public void libroModificar() {//Test para el Modelo_Libro::Modificar():

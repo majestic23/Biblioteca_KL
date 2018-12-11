@@ -20,9 +20,9 @@ public class Model_Libro {
 
     CADO cado = new CADO();
 
-    public boolean agregar(Libro libro) {
+    public boolean agregar(Object[] parametros) {
         String sql = "INSERT INTO libro VALUES(?,?,?)";
-        return this.cado.Ejecutar(sql, libro.getParametros());
+        return this.cado.Ejecutar(sql, parametros);
     }
 
     public boolean modificar(Libro libro) {

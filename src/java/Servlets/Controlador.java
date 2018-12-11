@@ -221,6 +221,38 @@ public class Controlador extends HttpServlet {
                         rd.forward(request, response);
                     }
                     break;
+                case 66:
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        rd = request.getRequestDispatcher("addLibro.jsp");
+                        List<Categoria> listaCat = mct.listar();
+                        if (!listaCat.isEmpty()) {
+                            request.getSession().setAttribute("ListaCat", listaCat.iterator());
+                            rd.forward(request, response);
+                        }
+                    }
+                    break;
+                case 666:
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        int idLibro = random.getInt();
+                        String nombre_Libro = request.getParameter("txtNombre");
+                        int idCategoria = Integer.parseInt(request.getParameter("txtCategoria"));
+                        Object[] parametros ={idLibro,nombre_Libro,idCategoria};
+                        rd = request.getRequestDispatcher("Controlador?opc=6");
+                        if (ml.agregar(parametros)) {
+                            rd.forward(request, response);
+                        }else{
+                            response.sendRedirect("Controlador?opc=99");
+                        }
+                    }
+                    break;
                 case 7://Admin: Agregar-Reservacion.
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;

@@ -205,7 +205,7 @@ public class Controlador extends HttpServlet {
                         rd.forward(request, response);
                     }
                     break;
-                case 6://Admin: Almacen.
+                case 6://Admin: Almacen de Libros.
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {
@@ -221,7 +221,7 @@ public class Controlador extends HttpServlet {
                         rd.forward(request, response);
                     }
                     break;
-                case 66:
+                case 66://Interfaz -Libro
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {
@@ -235,7 +235,7 @@ public class Controlador extends HttpServlet {
                         }
                     }
                     break;
-                case 666:
+                case 666://Admin: Agregar Libro
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
                     if (u == null) {
@@ -310,7 +310,7 @@ public class Controlador extends HttpServlet {
                     if (u == null) {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
-                        int idReservacion = random.getInt();
+                        int idReservacion = mr.newIdReservacion();
                         String fechaInicio = request.getParameter("txtFinicio");
                         String fechaFin = request.getParameter("txtFfin");
                         int idLibro = Integer.parseInt(request.getParameter("txtLibro"));

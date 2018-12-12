@@ -19,15 +19,35 @@ import java.util.List;
 public class Model_Reservacion {
 
     CADO cado = new CADO();
-
     public boolean agregar(Object[] parametros) {
-        String sql = "INSERT INTO reservacion VALUES (?, ?, ?, ?, ?)";
-        return this.cado.Ejecutar(sql, parametros);
+        int idReservacion = new Model_Reservacion().newIdReservacion();
+        if (idReservacion != 0) {
+            String sql = "INSERT INTO reservacion VALUES ("+idReservacion+", ?, ?, ?, ?)";
+            return this.cado.Ejecutar(sql, parametros);
+        }else{
+            return false;
+        }
     }
 
     public boolean modificar(Reservacion Reservacion) {
         String sql = "UPDATE reservacion SET fecha_fin= ? WHERE idreservacion=?";
         return this.cado.Ejecutar(sql, Reservacion.getModificar());
+    }
+
+    public int newIdReservacion() {
+        ResultSet rs;
+        int idReservacion=0;
+        String sql = "SELECT MAX(idreservacion) FROM reservacion";
+        rs = cado.Recuperar(sql);
+        try {
+            rs.beforeFirst();
+            while (rs.next()) {
+                idReservacion  = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            idReservacion = 0;
+        }
+        return idReservacion+1;
     }
 
     public List listar() {
@@ -39,7 +59,7 @@ public class Model_Reservacion {
 
     public List listarU(int idCliente) {
         ResultSet rs;
-        String sql = "SELECT * FROM reservacion WHERE cliente_idcliente="+idCliente;
+        String sql = "SELECT * FROM reservacion WHERE cliente_idcliente=" + idCliente;
         rs = this.cado.Recuperar(sql);
         return list(rs);
     }

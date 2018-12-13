@@ -310,13 +310,12 @@ public class Controlador extends HttpServlet {
                     if (u == null) {
                         response.sendRedirect("Controlador?opc=1");
                     } else {
-                        int idReservacion = mr.newIdReservacion();
                         String fechaInicio = request.getParameter("txtFinicio");
                         String fechaFin = request.getParameter("txtFfin");
                         int idLibro = Integer.parseInt(request.getParameter("txtLibro"));
                         int idCliente = Integer.parseInt(request.getParameter("txtDni"));
                         rd = request.getRequestDispatcher("Controlador?opc=7");
-                        Object[] parametros = {idReservacion, fechaInicio, fechaFin, idLibro, idCliente};
+                        Object[] parametros = {fechaInicio, fechaFin, idLibro, idCliente};
                         if (!mr.agregar(parametros)) {
                             response.sendRedirect("Controlador?opc=999");
                         } else {

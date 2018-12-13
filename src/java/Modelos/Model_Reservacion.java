@@ -19,14 +19,27 @@ import java.util.List;
 public class Model_Reservacion {
 
     CADO cado = new CADO();
+    Model_Libro ml = new Model_Libro();
+
     public boolean agregar(Object[] parametros) {
         int idReservacion = new Model_Reservacion().newIdReservacion();
-        if (idReservacion != 0) {
-            String sql = "INSERT INTO reservacion VALUES ("+idReservacion+", ?, ?, ?, ?)";
-            return this.cado.Ejecutar(sql, parametros);
-        }else{
+        if (ml.inStock((int) parametros[2])) {
+            if (idReservacion != 0) {
+                int nuevoStock = ml.getStock((int) parametros[2]) - 1;
+                String sql = "INSERT INTO reservacion VALUES (" + idReservacion + ", ?, ?, ?, ?)";
+                String sql2 = "UPDATE libro SET stock=" + nuevoStock + " WHERE idlibro=" + (int) parametros[2];
+                if (cado.Ejecutar(sql, parametros) && cado.Ejecutar(sql2)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
             return false;
         }
+
     }
 
     public boolean modificar(Reservacion Reservacion) {
@@ -36,23 +49,23 @@ public class Model_Reservacion {
 
     public int newIdReservacion() {
         ResultSet rs;
-        int idReservacion=0;
+        int idReservacion = 0;
         String sql = "SELECT MAX(idreservacion) FROM reservacion";
         rs = cado.Recuperar(sql);
         try {
             rs.beforeFirst();
             while (rs.next()) {
-                idReservacion  = rs.getInt(1);
+                idReservacion = rs.getInt(1);
             }
         } catch (SQLException e) {
             idReservacion = 0;
         }
-        return idReservacion+1;
+        return idReservacion + 1;
     }
 
     public List listar() {
         ResultSet rs;
-        String sql = "SELECT * FROM reservacion";
+        String sql = "SELECT * FROM reservacion ORDER BY idreservacion DESC";
         rs = this.cado.Recuperar(sql);
         return list(rs);
     }

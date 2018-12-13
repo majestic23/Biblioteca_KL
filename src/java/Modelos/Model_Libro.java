@@ -38,13 +38,47 @@ public class Model_Libro {
         rs = this.cado.Recuperar(sql);
         return list(rs);
     }
-    public List buscar(int idcategoria){
+
+    public List buscar(int idcategoria) {
         ResultSet rs;
         String sql;
-        sql = "SELECT * FROM libro WHERE categoria_idcategoria="+idcategoria;
+        sql = "SELECT * FROM libro WHERE categoria_idcategoria=" + idcategoria;
         rs = this.cado.Recuperar(sql);
         return list(rs);
     }
+
+    public boolean inStock(int idlibro) {
+        ResultSet rs;
+        int stock = 0;
+        String sql = "SELECT stock FROM libro WHERE idlibro=" + idlibro;
+        rs = this.cado.Recuperar(sql);
+        try {
+            rs.beforeFirst();
+            while (rs.next()) {
+                stock = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            stock = 0;
+        }
+        return stock != 0;
+    }
+
+    public int getStock(int idlibro) {
+        ResultSet rs;
+        int stock = 0;
+        String sql = "SELECT stock FROM libro WHERE idlibro=" + idlibro;
+        rs = this.cado.Recuperar(sql);
+        try {
+            rs.beforeFirst();
+            while (rs.next()) {
+                stock = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            stock = 0;
+        }
+        return stock;
+    }
+
     public List<Libro> list(ResultSet rs) {
         List<Libro> Lista = new ArrayList<>();
         try {

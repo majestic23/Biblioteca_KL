@@ -120,8 +120,11 @@
                             <div class="collapsible-body">
                                 <span>
                                     <p><b>Categoria: </b><%=l.getCategoria_idcategoria()%></p>
-                                    <p><b>Codigo: </b><%=l.getIdlibro()%><p>
-                                        <br><a href="controlador?opc=99&codigo=<%=l.getIdlibro()%>">Ver más</a>
+                                    <p><b>Codigo: </b><%=l.getIdlibro()%></p>
+                                    <p><b>Stock: </b><%=l.getStock()%></p>
+                                    <p><b>Descripcion: </b>
+                                        "<%=l.getDescripcion()%>"</p>
+                                    <br><a href="controlador?opc=99&codigo=<%=l.getIdlibro()%>">Editar</a>
                                 </span>
                             </div>
                         </li>
@@ -149,8 +152,11 @@
                             <div class="collapsible-body">
                                 <span>
                                     <p><b>Categoria: </b><%=l.getCategoria_idcategoria()%></p>
-                                    <p><b>Codigo: </b><%=l.getIdlibro()%><p>
-                                        <br><a href="controlador?opc=99&codigo=<%=l.getIdlibro()%>">Ver más</a>
+                                    <p><b>Codigo: </b><%=l.getIdlibro()%></p>
+                                    <p><b>Stock: </b><%=l.getStock()%></p>
+                                    <p><b>Descripcion: </b>
+                                        "<%=l.getDescripcion()%>"</p>
+                                    <br><a href="controlador?opc=99&codigo=<%=l.getIdlibro()%>">Ver más</a>
                                 </span>
                             </div>
                         </li>

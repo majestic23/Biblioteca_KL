@@ -220,7 +220,7 @@ public class Test {
     }
 
     public void libroModificar() {//Test para el Modelo_Libro::Modificar():
-        Libro libro = new Libro(10088, "Libro-Editado", 2);
+        Libro libro = new Libro(10088, "Libro-Editado", 2, 2);
         Model_Libro ml = new Model_Libro();
         System.out.println(ml.modificar(libro));
     }
@@ -285,6 +285,12 @@ public class Test {
             System.out.println("Varios elementos en lista");
         }
     }
+    
+    public int tamano(){
+        String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        char[] parrafo = lorem.toCharArray();
+        return parrafo.length;
+    }
 
     public static void main(String[] args) {
         Test test = new Test();
@@ -324,6 +330,7 @@ public class Test {
 //        List<Cliente> c = mc.listarUsu(parametrosC);
 //        Cliente cliente = c.get(0);
 //        System.out.println(cliente.toString());
+          System.out.println(test.tamano());;
     }
 
 }

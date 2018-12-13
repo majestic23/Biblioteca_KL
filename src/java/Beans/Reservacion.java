@@ -17,6 +17,7 @@ public class Reservacion {
     int idreservacion;
     String fecha_inicio;
     String fecha_fin;
+    int estado;
     int libro_idlibro;
     int cliente_idcliente;
 
@@ -37,16 +38,18 @@ public class Reservacion {
             this.idreservacion = rs.getInt(1);
             this.fecha_inicio = rs.getString(2);
             this.fecha_fin = rs.getString(3);
-            this.libro_idlibro = rs.getInt(4);
-            this.cliente_idcliente = rs.getInt(5);
+            this.estado = rs.getInt(4);
+            this.libro_idlibro = rs.getInt(5);
+            this.cliente_idcliente = rs.getInt(6);
         } catch (SQLException e) {
         }
     }
 
-    public Reservacion(int idreservacion, String fecha_inicio, String fecha_fin, int libro_idlibro, int cliente_idcliente) {
+    public Reservacion(int idreservacion, String fecha_inicio, String fecha_fin, int estado, int libro_idlibro, int cliente_idcliente) {
         this.idreservacion = idreservacion;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
+        this.estado = estado;
         this.libro_idlibro = libro_idlibro;
         this.cliente_idcliente = cliente_idcliente;
     }
@@ -91,12 +94,21 @@ public class Reservacion {
         this.cliente_idcliente = cliente_idcliente;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
     public void setParametros(Object[] parametros) {
         parametros[0] = this.idreservacion;
         parametros[1] = this.fecha_inicio;
         parametros[2] = this.fecha_fin;
-        parametros[3] = this.libro_idlibro;
-        parametros[4] = this.cliente_idcliente;
+        parametros[3] = this.estado;
+        parametros[4] = this.libro_idlibro;
+        parametros[5] = this.cliente_idcliente;
     }
 
     public Object[] getParametros() {
@@ -104,6 +116,7 @@ public class Reservacion {
             this.idreservacion,
             this.fecha_inicio,
             this.fecha_fin,
+            this.estado,
             this.libro_idlibro,
             this.cliente_idcliente
         };
@@ -117,4 +130,10 @@ public class Reservacion {
         };
         return parametros;
     }
+
+    @Override
+    public String toString() {
+        return "Reservacion{" + "idreservacion=" + idreservacion + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", estado=" + estado + ", libro_idlibro=" + libro_idlibro + ", cliente_idcliente=" + cliente_idcliente + '}';
+    }
+    
 }

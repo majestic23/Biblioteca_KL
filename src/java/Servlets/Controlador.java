@@ -323,6 +323,44 @@ public class Controlador extends HttpServlet {
                         }
                     }
                     break;
+                case 7777:
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        int idReservacion = Integer.parseInt(request.getParameter("idreservacion"));
+                        List<Reservacion> listaR = mr.getReserva(idReservacion);
+                        rd = request.getRequestDispatcher("reservacion.jsp");
+                        if (!listaR.isEmpty()) {
+                            Reservacion r = listaR.get(0);
+                            request.getSession().setAttribute("Reservacion", r);
+                        } else {
+                            request.getSession().setAttribute("Reservacion", null);
+                        }
+                        rd.forward(request, response);
+                    }
+                    break;
+                case 77777:
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        int idreservacion = Integer.parseInt(request.getParameter("txtIdReserva"));
+                        String fechafin = request.getParameter("txtFfin");
+                        rd = request.getRequestDispatcher("Controlador?opc=7");
+                        if (mr.modificar(idreservacion, fechafin)) {
+                            if (mr.devolver(idreservacion)) {
+                                rd.forward(request, response);
+                            } else {
+                                response.sendRedirect("Controlador?opc=99");
+                            }
+                        } else {
+                            response.sendRedirect("Controlador?opc=99");
+                        }
+                    }
+                    break;
                 case 9://Logout
                     request.getSession(true);
                     request.getSession().invalidate();

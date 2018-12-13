@@ -1,34 +1,27 @@
 <%-- 
-    Document   : home
-    Created on : 11/11/2018, 11:14:53 AM
-    Author     : manue
+    Document   : configuracion
+    Created on : 15/11/2018, 06:17:30 PM
+    Author     : retr0
 --%>
 <%@page import="Beans.Reservacion"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="Beans.Cliente"%>
 <%@page import="Beans.Trabajador"%>
 <%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
-    Cliente c = new Cliente();
-    Iterator<Reservacion> lista = (new ArrayList<Reservacion>()).iterator();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
     String tipo = (session.getAttribute("tipo") != null)
             ? (String) session.getAttribute("tipo") : null;
+    Reservacion rv = new Reservacion();
     if (u.equals(null)) {
         response.sendRedirect("Controlador?opc=99");
     } else if (tipo.equals("Trabajador")) {
         t = (session.getAttribute("trabajador") != null)
                 ? (Trabajador) session.getAttribute("trabajador") : null;
-        lista = (session.getAttribute("ListaR") != null)
-                ? (Iterator) session.getAttribute("ListaR") : null;
+        rv = (session.getAttribute("Reservacion") != null)
+                ? (Reservacion) session.getAttribute("Reservacion") : null;
     } else if (tipo.equals("Cliente")) {
-        c = (session.getAttribute("cliente") != null)
-                ? (Cliente) session.getAttribute("cliente") : null;
-        lista = (session.getAttribute("ListaR") != null)
-                ? (Iterator) session.getAttribute("ListaR") : null;
+        response.sendRedirect("Controlador?opc=99");
     }
 
 %>
@@ -44,15 +37,15 @@
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="css/style.css">
-        <title>Home</title>
+        <title>Configuracion</title>
     </head>
     <body>
         <header>
             <!------------           nav    ------------------->
             <nav class="blue-grey lighten-2" role="navigation">
                 <div class="nav-wrapper container">
-                    <a class="brand-logo" href="Controlador?opc=111"><i class="material-icons">local_library</i>Biblioteca KL</a>  
-                    <a href="#" data-target="movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
+                    <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-small-only">
                         <li><a href="Controlador?opc=9">Logout</a></li>
                         <li class="sidenav-trigger left" data-target="slide-out-usuario"><a href="#"><i class="material-icons">view_module</i></a></li>
@@ -69,61 +62,59 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                    <%if (tipo.equals("Trabajador")) {%>
+                    <%if (t.equals(null)) {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
                     <%    } else {%>
-                <li><a href="#!"><i class="material-icons">cloud</i>Reseclaciones</a></li>
+                <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
                     <%}%>
-                <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
+                <li><a href="#!"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Accesorios</a></li>
                 <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
             </ul>
             <!----          SideNav de menus         ------>
-            <ul class="sidenav" id="movil">
-                <li><div class="user-view">
-                        <div class="background">
-                            <img src="images/user_wallpaper.jpg">
-                        </div>
-                        <a href="#user"><img class="circle" src="images/user_default.png"></a>
-                        <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
-                        <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
-                    </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>    
-                <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Accesorios</a></li>
-                <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
+            <ul class="sidenav" id="prueba-movil">
+                <li><a href="#">Buscar</a></li>
+                <li><a href="#">Desplegar</a></li>
             </ul>
         </header>
         <main>
             <div class="container z-depth-3" id="central">
                 <div class="section">
-                    <h3 class="teal-text center-align">Lista de Reservaciones</h3>
-                    <a href="Controlador?opc=77" class="waves-effect waves-green btn-flat left-align"><i class="material-icons left">add</i>Agregar</a>
+                    <h3 class="center-align">Reservacion</h3>
                 </div>
-                <div class="row"><%for (Iterator it = lista; it.hasNext();) {
-                        Reservacion rv = (Reservacion) it.next();
-                    %>
-                    <ul class="collapsible popout">
-                        <li>
-                            <div class="collapsible-header">
-                                <i class="material-icons">explicit</i>
-                                <%=rv.getIdreservacion()%>
-                            </div>
-                            <div class="collapsible-body">
-                                <span>
-                                    <p><b>Inicio: </b><%=rv.getFecha_inicio()%></p>
-                                    <p><b>Fin: </b><%=rv.getFecha_fin()%></p>
-                                    <p><b>Usuario: </b><%=rv.getCliente_idcliente()%><p>
-                                    <p><b>Estado: </b><%if (rv.getEstado() == 1) {%>Devuelto<%} else {%>En Espera<%}%><p>
-                                        <a href="Controlador?opc=7777&idreservacion=<%=rv.getIdreservacion()%>" class="waves-effect waves-green btn-flat left-align <%if (rv.getEstado() == 1) {%>disabled<%} else {%><%}%>">Devolver</a>
-                                </span>
-                            </div>
-                        </li>
-                    </ul>
-                    <%}%>
-                </div>
+                <div class="divider"></div>
+                <form action="Controlador" method="POST">
+                    <div class="container section">
+                        <table class="responsive-table">
+                            <tr>
+                                <th>IdReservacion</th>
+                                <td><input type="text" name="txtIdReserva" value="<%=rv.getIdreservacion()%>" readonly=""></td>
+                            </tr>
+                            <tr>
+                                <th>Inicio</th>
+                                <td><%=rv.getFecha_inicio()%></td>
+                            </tr>
+                            <tr>
+                                <th>Fin</th>
+                                <td><input type="date" name="txtFfin" value="<%=rv.getFecha_fin()%>"></td>
+                            </tr>
+                            <tr>
+                                <th>Libro</th>
+                                <td><%=rv.getLibro_idlibro()%></td>
+                            </tr>
+                            <tr>
+                                <th>ID Socio</th>
+                                <td><%=rv.getCliente_idcliente()%></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="section center-align">
+                        <input type="hidden" name="opc" value="77777"><input class="waves-effect waves-green btn-flat" type="submit" value="Devolver">
+                        <a href="Controlador?opc=7" class="waves-effect waves-green btn-flat">Cancelar</a>
+                    </div>
+                </form>
             </div>
         </main>
         <footer class="page-footer orange darken-3">

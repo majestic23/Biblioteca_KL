@@ -42,9 +42,27 @@ public class Model_Reservacion {
 
     }
 
-    public boolean modificar(Reservacion Reservacion) {
-        String sql = "UPDATE reservacion SET fecha_fin= ? WHERE idreservacion=?";
-        return this.cado.Ejecutar(sql, Reservacion.getModificar());
+    public boolean modificar(int idReservacion, String fecha_fin) {
+        String sql = "UPDATE reservacion SET fecha_fin='" + fecha_fin + "', estado=1 WHERE idreservacion=" + idReservacion;
+        return this.cado.Ejecutar(sql);
+    }
+
+    public boolean devolver(int idReservacion) {
+        ResultSet rs;
+        int idlibro = 0;
+        String sql = "SELECT libro_idlibro FROM reservacion WHERE idreservacion=" + idReservacion;
+        rs = cado.Recuperar(sql);
+        try {
+            rs.beforeFirst();
+            while (rs.next()) {
+                idlibro = rs.getInt(1);
+            }
+            int nuevoStock = ml.getStock(idlibro) + 1;
+            String sql2 = "UPDATE libro SET stock=" + nuevoStock + " WHERE idlibro=" + idReservacion;
+            return cado.Ejecutar(sql2);
+        } catch (SQLException e) {
+            return false;
+        }
     }
 
     public int newIdReservacion() {
@@ -66,6 +84,13 @@ public class Model_Reservacion {
     public List listar() {
         ResultSet rs;
         String sql = "SELECT * FROM reservacion ORDER BY idreservacion DESC";
+        rs = this.cado.Recuperar(sql);
+        return list(rs);
+    }
+
+    public List getReserva(int idReserva) {
+        ResultSet rs;
+        String sql = "SELECT * FROM reservacion WHERE idreservacion=" + idReserva;
         rs = this.cado.Recuperar(sql);
         return list(rs);
     }
@@ -113,5 +138,10 @@ public class Model_Reservacion {
     public boolean eliminar(Reservacion Reservacion) {
         String sql = "DELETE FROM reservacion WHERE idReservacion=" + Reservacion.getIdreservacion();
         return this.cado.Ejecutar(sql);
+    }
+    
+    public static void main(String[] args) {
+        List<Reservacion> lita = new Model_Reservacion().getReserva(10085);
+        System.out.println(lita.get(0).toString());
     }
 }

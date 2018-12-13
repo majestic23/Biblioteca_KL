@@ -252,14 +252,14 @@ public class Test {
     }
 
     public void reservacionModificar() {//Test para el Modelo_Reservacion::Modificar():
-        List<Reservacion> nuevos = new ArrayList<>();
-        nuevos.add(new Reservacion(10040, "2018-11-04"));
-        nuevos.add(new Reservacion(10098, "2018-11-07"));
-        nuevos.add(new Reservacion(10097, "2018-08-29"));
-        Model_Reservacion mr = new Model_Reservacion();
-        nuevos.forEach((reservacion) -> {
-            System.out.println(mr.modificar(reservacion));
-        });
+//        List<Reservacion> nuevos = new ArrayList<>();
+//        nuevos.add(new Reservacion(10040, "2018-11-04"));
+//        nuevos.add(new Reservacion(10098, "2018-11-07"));
+//        nuevos.add(new Reservacion(10097, "2018-08-29"));
+//        Model_Reservacion mr = new Model_Reservacion();
+//        nuevos.forEach((reservacion) -> {
+//            System.out.println(mr.modificar(reservacion));
+//        });
     }
 
     public void reservacionListar1() {//Test para el Modelo_Reservacion::Listar():

@@ -205,6 +205,52 @@ public class Controlador extends HttpServlet {
                         rd.forward(request, response);
                     }
                     break;
+                case 555:
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        rd = request.getRequestDispatcher("usuario.jsp");
+                        String idusuario = request.getParameter("codigo");
+                        List<Usuario> lista = mu.listar(idusuario);
+                        List<Cliente> listac = mc.listar(Integer.parseInt(idusuario));
+                        if (!lista.isEmpty() && !listac.isEmpty()) {
+                            request.getSession().setAttribute("uCliente", lista.get(0));
+                            request.getSession().setAttribute("cliente", listac.get(0));
+                            rd.forward(request, response);
+                        }else{
+                            request.getSession().setAttribute("uCliente", null);
+                            request.getSession().setAttribute("cliente", null);
+                            rd.forward(request, response);
+                        }    
+                    }
+                    break;
+                case 55555:
+                    u = (request.getSession().getAttribute("usuario") != null)
+                            ? (Usuario) request.getSession().getAttribute("usuario") : null;
+                    if (u == null) {
+                        response.sendRedirect("Controlador?opc=1");
+                    } else {
+                        rd = request.getRequestDispatcher("Controlador?opc=5");
+                        String nombre = request.getParameter("txtNombre");
+                        String correo = request.getParameter("txtEmail");
+                        String dni = request.getParameter("txtDni");
+                        int idcliente = Integer.parseInt(request.getParameter("txtDni"));
+                        String username = ""+idcliente;
+                        Object[] modificarC = {Integer.parseInt(dni),nombre,dni,idcliente};
+                        Object[] modificarU = {dni,correo,username};
+                        if (mu.actualizar(modificarU)) {
+                            if (mc.actualizar(modificarC)) {
+                                rd.forward(request, response);
+                            }else{
+                                response.sendRedirect("Controlador?opc=99");
+                            }
+                        }else{
+                            response.sendRedirect("Controlador?opc=99");
+                        }
+                    }
+                    break;
                 case 6://Admin: Almacen de Libros.
                     u = (request.getSession().getAttribute("usuario") != null)
                             ? (Usuario) request.getSession().getAttribute("usuario") : null;
@@ -244,7 +290,9 @@ public class Controlador extends HttpServlet {
                         int idLibro = random.getInt();
                         String nombre_Libro = request.getParameter("txtNombre");
                         int idCategoria = Integer.parseInt(request.getParameter("txtCategoria"));
-                        Object[] parametros = {idLibro, nombre_Libro, idCategoria};
+                        String descripcion = request.getParameter("txtDescripcion");
+                        int stock = Integer.parseInt(request.getParameter("txtStock"));
+                        Object[] parametros = {idLibro, nombre_Libro, stock, descripcion, idCategoria};
                         rd = request.getRequestDispatcher("Controlador?opc=6");
                         if (ml.agregar(parametros)) {
                             rd.forward(request, response);

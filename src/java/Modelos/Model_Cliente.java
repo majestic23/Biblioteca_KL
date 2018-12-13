@@ -21,9 +21,9 @@ public class Model_Cliente {
     CADO cado = new CADO();
 
     public boolean agregar(int dni, String nombre, String username) {
-        Object[] datos = {dni,nombre,username};
+        Object[] datos = {dni, nombre, username};
         String sql = "INSERT INTO cliente (`idcliente`, `nombre_cliente`, `usuario_username`) VALUES (?,?,?)";
-        return this.cado.Ejecutar(sql,datos);
+        return this.cado.Ejecutar(sql, datos);
     }
 
     public boolean modificar(Object[] parametros) {
@@ -31,8 +31,14 @@ public class Model_Cliente {
                 + "WHERE idcliente=?";
         return this.cado.Ejecutar(sql, parametros);
     }
-    
-    public List lista(){
+
+    public boolean actualizar(Object[] parametros) {
+        String sql = "UPDATE cliente SET idcliente=?, nombre_cliente=?, usuario_username=? "
+                + "WHERE idcliente=?";
+        return this.cado.Ejecutar(sql, parametros);
+    }
+
+    public List lista() {
         ResultSet rs;
         String sql;
         sql = "SELECT * FROM cliente";
@@ -40,11 +46,12 @@ public class Model_Cliente {
 
         return list(rs);
     }
-    public List listar(Object[] Parametros) {
+
+    public List listar(int idCliente) {
         ResultSet rs;
         String sql;
-        sql = "SELECT * FROM cliente WHERE idcliente=?";
-        rs = this.cado.Recuperar(sql, Parametros);
+        sql = "SELECT * FROM cliente WHERE idcliente=" + idCliente;
+        rs = this.cado.Recuperar(sql);
 
         return list(rs);
     }
@@ -73,12 +80,12 @@ public class Model_Cliente {
         String sql = "DELETE FROM cliente WHERE idcliente=" + cliente.getIdcliente();
         return this.cado.Ejecutar(sql);
     }
-    
+
     public static void main(String[] args) {
         Model_Cliente mc = new Model_Cliente();
         String dni = "17171717";
-        Object[] datos = {(String)"17171717", (String)"k@gmail.com"};
-        System.out.println(mc.agregar(Integer.parseInt(dni),"Kety Importa",dni));
+        Object[] datos = {(String) "17171717", (String) "k@gmail.com"};
+        System.out.println(mc.agregar(Integer.parseInt(dni), "Kety Importa", dni));
 //        List<Cliente> listaa = mc.lista();
 //        if (!listaa.isEmpty()) {
 //            System.out.println("Tiene valores!");

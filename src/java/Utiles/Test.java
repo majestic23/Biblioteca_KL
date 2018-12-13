@@ -174,15 +174,15 @@ public class Test {
     }
 
     public void clienteListar() {//Test para el Modelo_Cliente::Listar():
-        Object[] parametros = {};
-        Model_Cliente mc = new Model_Cliente();
-        List<Cliente> clientes = mc.listar(parametros);
-        System.out.println(clientes.isEmpty());
-        if (clientes.size() == 1) {
-            System.out.println("1 cliente en lista");
-        } else {
-            System.out.println("Varios clientes en lista");
-        }
+//        Object[] parametros = {};
+//        Model_Cliente mc = new Model_Cliente();
+//        List<Cliente> clientes = mc.listar(parametros);
+//        System.out.println(clientes.isEmpty());
+//        if (clientes.size() == 1) {
+//            System.out.println("1 cliente en lista");
+//        } else {
+//            System.out.println("Varios clientes en lista");
+//        }
     }
 
     public void cliente_usuario() {//Test para el Modelo_Cliente::ListarUsuario():

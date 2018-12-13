@@ -1,12 +1,15 @@
-<%@page import="Beans.Categoria"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Iterator"%>
+<%-- 
+    Document   : configuracion
+    Created on : 15/11/2018, 06:17:30 PM
+    Author     : retr0
+--%>
 <%@page import="Beans.Cliente"%>
 <%@page import="Beans.Trabajador"%>
 <%@page import="Beans.Usuario"%>
 <%
     Trabajador t = new Trabajador();
-    Iterator<Categoria> listac = (new ArrayList<Categoria>()).iterator();
+    Cliente cliente = new Cliente();
+    Usuario ucliente = new Usuario();
     Usuario u = (session.getAttribute("usuario") != null)
             ? (Usuario) session.getAttribute("usuario") : null;
     String tipo = (session.getAttribute("tipo") != null)
@@ -16,10 +19,12 @@
     } else if (tipo.equals("Trabajador")) {
         t = (session.getAttribute("trabajador") != null)
                 ? (Trabajador) session.getAttribute("trabajador") : null;
-        listac = (session.getAttribute("ListaCat") != null)
-                ? (Iterator) session.getAttribute("ListaCat") : null;
+        cliente = (session.getAttribute("cliente") != null)
+                ? (Cliente) session.getAttribute("cliente") : null;
+        ucliente = (session.getAttribute("uCliente") != null)
+            ? (Usuario) session.getAttribute("uCliente") : null;
     } else if (tipo.equals("Cliente")) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("Controlador?opc=99");
     }
 
 %>
@@ -35,15 +40,15 @@
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="css/style.css">
-        <title>Home</title>
+        <title>Configuracion</title>
     </head>
     <body>
         <header>
             <!------------           nav    ------------------->
             <nav class="blue-grey lighten-2" role="navigation">
                 <div class="nav-wrapper container">
-                    <a class="brand-logo" href="Controlador?opc=111"><i class="material-icons">local_library</i>Biblioteca KL</a>  
-                    <a href="#" data-target="movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <a class="brand-logo" href="#"><i class="material-icons">local_library</i>Biblioteca KL</a>  
+                    <a href="#" data-target="prueba-movil" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-small-only">
                         <li><a href="Controlador?opc=9">Logout</a></li>
                         <li class="sidenav-trigger left" data-target="slide-out-usuario"><a href="#"><i class="material-icons">view_module</i></a></li>
@@ -60,83 +65,48 @@
                         <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
                         <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
                     </div></li>
-                    <%if (tipo.equals("Trabajador")) {%>
+                    <%if (t.equals(null)) {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>
                     <%    } else {%>
                 <li><a href="#!"><i class="material-icons">cloud</i>Reservaciones</a></li>
                     <%}%>
-                <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
+                <li><a href="#!"><i class="material-icons">settings</i>Configuracion</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Accesorios</a></li>
                 <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
             </ul>
             <!----          SideNav de menus         ------>
-            <ul class="sidenav" id="movil">
-                <li><div class="user-view">
-                        <div class="background">
-                            <img src="images/user_wallpaper.jpg">
-                        </div>
-                        <a href="#user"><img class="circle" src="images/user_default.png"></a>
-                        <a href="#name"><span class="white-text name"><%=u.getUsername()%></span></a>
-                        <a href="#email"><span class="white-text email"><%=u.getEmail()%></span></a>
-                    </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>Almacen</a></li>    
-                <li><a href="Controlador?opc=4"><i class="material-icons">settings</i>Configuracion</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader">Accesorios</a></li>
-                <li><a class="waves-effect" href="#!"><i class="material-icons">insert_invitation</i>Calendario</a></li>
+            <ul class="sidenav" id="prueba-movil">
+                <li><a href="#">Buscar</a></li>
+                <li><a href="#">Desplegar</a></li>
             </ul>
         </header>
         <main>
             <div class="container z-depth-3" id="central">
                 <div class="section">
-                    <h3 class="center-align teal-text">Nuevo Libro</h3>
+                    <h3 class="center-align">Usuario</h3>
                 </div>
                 <div class="divider"></div>
                 <form action="Controlador" method="post">
                     <div class="container section">
                         <table class="responsive-table">
                             <tr>
-                                <th>Categoria:</th>
-                                <td> <div class="input-field col s12">
-                                        <select name="txtCategoria">
-                                            <%for (Iterator it = listac; it.hasNext();) {
-                                                    Categoria c = (Categoria) it.next();
-                                            %>
-                                            <option value="<%=c.getIdcategoria()%>"><%=c.getNombre_categoria()%></option>
-                                            <%
-                                                }
-                                            %>
-                                        </select>
-                                        <label>Seleccione Categoria</label>
-                                    </div>
-                                </td>
+                                <th>Nombre</th>     
+                                <td><input type="text" name="txtNombre"value="<%=cliente.getNombre_cliente()%>"></td>
                             </tr>
                             <tr>
-                                <th>Nombre del Libro:</th>
-                                <td><div class="input-field col s6">
-                                        <input id="dni" type="text" name="txtNombre" class="validate">
-                                        <label for="dni">ex: "Cien años de Soledad"</label>
-                                    </div></td>
+                                <th>Correo</th>
+                                <td><input type="email" name="txtEmail" value="<%=ucliente.getEmail()%>"></td>
                             </tr>
                             <tr>
-                                <th>Descripción del Libro:</th>
-                                <td><div class="input-field col s12">
-                                        <textarea id="descripcion"  name="txtDescripcion" class="materialize-textarea" data-length="500"></textarea>
-                                            <label for="descripcion">Descripcion</label>
-                                        </div></td>
-                            </tr>
-                            <tr>
-                                <th>Stock:</th>
-                                <td><div class="input-field col s6">
-                                        <input type="text" name="txtStock" class="validate">
-                                    </div></td>
+                                <th>Dni</th>
+                                <td><input type="text" name="txtDni" value="<%=cliente.getIdcliente()%>"></td>
                             </tr>
                         </table>
                     </div>
                     <div class="divider"></div>
                     <div class="section center-align">
-                        <input type="hidden" name="opc" value="666"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
+                        <input type="hidden" name="opc" value="55555"><input class="waves-effect waves-green btn-flat" type="submit" value="Guardar">
                         <a href="Controlador?opc=111" class="waves-effect waves-green btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -180,11 +150,5 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script> 
-        <script>
-            $(document).ready(function () {
-                $('select').formSelect();
-            });
-        </script>
     </body>
 </html>
-

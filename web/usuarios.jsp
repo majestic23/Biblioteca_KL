@@ -110,7 +110,7 @@
                                 <span>
                                     <p><b>Nombre: </b><%=cl.getNombre_cliente()%></p>
                                     <p><b>Codigo: </b><%=cl.getIdcliente()%>; <b>Usuario: </b><%=cl.getUsuario_idusuario()%><p>
-                                        <br><a href="controlador?opc=99&codigo=<%=cl.getIdcliente()%>">Ver más</a>
+                                        <br><a href="Controlador?opc=555&codigo=<%=cl.getIdcliente()%>">Ver más</a>
                                 </span>
                             </div>
                         </li>
